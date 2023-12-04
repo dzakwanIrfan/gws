@@ -49,8 +49,12 @@
                     <input type="email" id="emailku" placeholder="Masukan email Anda..">
                 </div>
                 <div class="input-group">
-                    <label for="passwordku">Password</label>
-                    <input type="password" id="passwordku" placeholder="Masukan password Anda..">
+                    <label for="passwordku">Kata Sandi</label>
+                    <input type="password" id="passwordku" placeholder="Masukan kata sandi Anda..">
+                </div>
+                <div class="input-group">
+                    <label for="passwordku">Konfirmasi Kata Sandi</label>
+                    <input type="password" id="passwordku" placeholder="Masukan kata sandi Anda..">
                 </div>
                 <input type="submit" value="Daftar" class="submit">
             </form>
