@@ -1,1 +1,1 @@
-# gws
+# gws lu pada
