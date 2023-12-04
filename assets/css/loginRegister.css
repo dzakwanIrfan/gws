@@ -1,0 +1,169 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.kanan {
+    width: 50%;
+    background-color: #FDE5D4;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.kanan h1 {
+    color: #445D48;
+    font-size: 48px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.kanan > form {
+    width: 100%; /* Sesuaikan dengan lebar form yang diinginkan */
+    text-align: center;
+}
+
+.kanan .input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.kanan .input-group label {
+    color: #001524;
+    text-align: left;
+    width: 75%; 
+    box-sizing: border-box;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.kanan input {
+    width: 75%;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgba(176, 186, 195, 0.4);
+}
+
+.kanan input:focus{
+    outline: 2px solid #445D48;
+}
+
+.kanan .submit:hover{
+    outline: 2px solid #445D48;
+}
+
+.kanan .submit{
+    margin-top: 2rem;
+    background-color: #D6CC99;
+    color: #001524;
+    width: 50%;
+    border-radius: 0.75rem 0.5rem 0.75rem 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.kanan input::placeholder{
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.kanan .atau{
+    color: #B0BAC3;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.kanan small{
+    color: #7C838A;
+}
+
+.kanan small b{
+    text-decoration: none;
+    color: #445D48;
+    cursor: pointer;
+}
+
+.kiri{
+    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.kiri p{
+    color: #445D48;
+    font-size: 48px;
+    font-weight: 800;
+}
+
+.kiri img{
+    max-width: 100%;
+    height: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .kiri {
+        display: none;
+    }
+
+    .kanan{
+        width: 100vh;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 992px) {
+    .kiri p{
+        font-size: 24px;
+    }
+    
+    .kanan h1{
+        font-size: 24px;
+    }
+
+    .input-group{
+        font-size: 0.75rem;
+    }
+
+    .kanan input::placeholder{
+        font-size: 0.75rem;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .kiri p{
+        font-size: 36px;
+    }
+
+    .kanan h1{
+        font-size: 36px;
+    }
+}
+
+/* Tambahkan aturan animasi di dalam CSS Anda */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(20px); }
+}
