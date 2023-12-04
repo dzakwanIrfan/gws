@@ -58,13 +58,11 @@
                 </div>
                 <div class="input-group">
                     <label for="passwordku">Kata Sandi</label>
-                    <input type="password" id="passwordku" placeholder="Masukan kata sandi Anda..">
+                    <input type="password" name="password" id="passwordku" placeholder="Masukan kata sandi Anda..">
                 </div>
                 <div class="input-group">
                     <label for="passwordku">Konfirmasi Kata Sandi</label>
-                    <input type="password" id="passwordku" placeholder="Masukan kata sandi Anda..">
-                    <label for="passwordku">Password</label>
-                    <input type="password" name="password" id="passwordku" placeholder="Masukan password Anda..">
+                    <input type="password" name="confirm" id="konfirmasiku" placeholder="Masukan password Anda..">
                 </div>
                 <input type="submit" name="register" value="Daftar" class="submit">
             </form>
