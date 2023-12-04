@@ -1,3 +1,11 @@
+<?php 
+    include 'conection.php';
+
+    if(isset($_POST['register'])){
+        
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +24,7 @@
         </div>
         <div class="kanan">
             <h1>Masuk Sekarang</h1>
-            <form action="">
+            <form action="" method="post">
                 <div class="input-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" placeholder="Masukan email Anda..">
@@ -38,21 +46,21 @@
             <form action="">
                 <div class="input-group">
                     <label for="name">Nama</label>
-                    <input type="text" id="name" placeholder="Masukan nama Anda..">
+                    <input type="text" name="name" id="name" placeholder="Masukan nama Anda..">
                 </div>
                 <div class="input-group">
                     <label for="username">Nama Pengguna</label>
-                    <input type="text" id="username" placeholder="Masukan nama pengguna Anda..">
+                    <input type="text" name="username" id="username" placeholder="Masukan nama pengguna Anda..">
                 </div>
                 <div class="input-group">
                     <label for="emailku">Email</label>
-                    <input type="email" id="emailku" placeholder="Masukan email Anda..">
+                    <input type="email" name="email" id="emailku" placeholder="Masukan email Anda..">
                 </div>
                 <div class="input-group">
                     <label for="passwordku">Password</label>
-                    <input type="password" id="passwordku" placeholder="Masukan password Anda..">
+                    <input type="password" name="password" id="passwordku" placeholder="Masukan password Anda..">
                 </div>
-                <input type="submit" value="Daftar" class="submit">
+                <input type="submit" name="register" value="Daftar" class="submit">
             </form>
             <p class="atau">- ATAU -</p>
             <small>Sudah memiliki akun? <b onclick="showContainer('login')">Masuk</b></small>
