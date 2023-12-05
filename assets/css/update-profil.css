@@ -1,0 +1,137 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #FDE5D4;
+}
+
+h1{
+    color: #001524;
+    margin-bottom: 3rem;
+}
+
+.container-update-user{
+    margin-left: 5rem;
+    padding: 2rem 5rem;
+}
+
+.wrap{
+    padding: 3rem;
+    border-radius: 2rem;
+    border: 4px solid #001524;
+    width: 50%;
+    background-color: #D6CC99;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+form{
+    width: 100%; 
+    text-align: center;
+}
+
+.input-group{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    color: #001524;
+    text-align: left;
+    width: 100%; 
+    box-sizing: border-box;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgba(176, 186, 195, 0.4);
+}
+
+input:focus{
+    outline: 2px solid #445D48;
+}
+
+.submit:hover{
+    outline: 2px solid white;
+}
+
+img{
+    border-radius: 50%;
+    background-color: white;
+    padding: 0.5rem;
+    object-fit: cover;
+    width: 10rem;
+    height: 10rem;
+    cursor: pointer;
+}
+
+.submit-group{
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.submit{
+    padding: 0.5rem 1rem;
+    margin-top: 2rem;
+    color: white;
+    background-color: #445D48;
+    width: 25%;
+    border-radius: 0.75rem 0.5rem 0.75rem 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.batal{
+    color: white;
+    padding: 0.5rem 1rem;
+    margin-top: 2rem;
+    background-color: transparent;
+    border: 2px solid #445D48;
+    color: #001524;
+    width: 25%;
+    border-radius: 0.75rem 0.5rem 0.75rem 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.batal:hover{
+    background-color: white;
+    border: 2px solid #445D48;
+}
+
+.dropdown-group{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 3rem;
+}
+
+select {
+    width: 100%;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgba(176, 186, 195, 0.4);
+}
+
