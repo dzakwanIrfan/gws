@@ -22,7 +22,7 @@
         align-items: center;
     }
 
-    a {
+    nav a, .sidebar a {
         width: 1.5rem;
         height: 1.5rem;
         display: inline;

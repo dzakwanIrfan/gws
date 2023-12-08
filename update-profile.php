@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="submit-group">
-                    <a href="" class="batal">Batal</a>
+                    <a href="profile.php" class="batal">Batal</a>
                     <input type="submit" value="Ubah" class="submit">
                 </div>
             </form>
