@@ -50,7 +50,7 @@
 <div class="sidebar">
     <nav>
         <a href="index.php"><ion-icon name="home-outline"></ion-icon></a>
-        <a href=""><ion-icon name="add-outline"></ion-icon></a>
+        <a href="create-survey.php"><ion-icon name="add-outline"></ion-icon></a>
         <a href=""><ion-icon name="person-outline"></ion-icon></a>
     </nav>
     <a href="" class="logout"><ion-icon name="log-out-outline"></ion-icon></a>
