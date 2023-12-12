@@ -49,7 +49,7 @@
 
 <div class="sidebar">
     <nav>
-        <a href=""><ion-icon name="home-outline"></ion-icon></a>
+        <a href="index.php"><ion-icon name="home-outline"></ion-icon></a>
         <a href=""><ion-icon name="add-outline"></ion-icon></a>
         <a href=""><ion-icon name="person-outline"></ion-icon></a>
     </nav>
