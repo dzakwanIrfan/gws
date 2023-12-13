@@ -40,7 +40,7 @@
                         <a href="profile.php"><div class="date"><small>1 December 2023</small></div></a>
                     </div>
                 </div>
-                <a href="#">
+                <a href="survey.php">
                     <div class="title">Judul Survey</div>
                     <div class="desk">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius sunt, commodi vitae sed unde quam ratione, illo, eaque nemo odio rerum! Eligendi a, impedit asperiores nisi modi omnis fuga consequatur alias cupiditate nobis corporis architecto commodi aut ratione eaque soluta! ...</div>
                     <img src="assets/images/gambar-survey.png" alt="survey-image" class="banner">

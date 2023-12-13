@@ -1,0 +1,172 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #FDE5D4;
+}
+
+.container{
+    margin-left: 5rem;
+    padding: 3rem 5rem;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+a{
+    text-decoration: none;
+    color: #001524;
+}
+
+.profile{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.profile img{
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: white;
+    padding: 2.5px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.profile-desk{
+    line-height: 1rem;
+}
+
+.profile-desk .name{
+    font-weight: 600;
+    color: #001524;
+}
+
+.profile-desk .date small{
+    color: rgba(138, 138, 138, 1);
+}
+
+.title{
+    font-weight: 800;
+    font-size: 2rem;
+    text-align: left;
+}
+
+.desc{
+    text-align: justify;
+}
+
+.container > img{
+    margin: 2rem 0;
+}
+
+.option-group{
+    padding: 1rem 10rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem 5rem;
+    flex-wrap: wrap;
+}
+
+.option{
+    display: flex;
+    align-items: center;
+}
+
+.question-group{
+    background-color: #445D48;
+    color: white;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.question-group:nth-child(even){
+    background-color: #D6CC99;
+    color: #001524;
+}
+
+.question{
+    text-align: justify;
+    margin: auto;
+    padding: 0 1rem;
+}
+
+.question-container > input{
+    border: none;
+    outline: none;
+    padding: 0.5rem 3rem;
+    background-color: #D6CC99;
+    font-weight: 600;
+    border-radius: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.question-container > input:hover{
+    outline: 2px solid #445D48;
+}
+
+.action{
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    z-index: 99999999;
+}
+
+.votes{
+    display: flex;
+    gap: 1rem;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    border: 2px solid #001524;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.up:hover{
+    background-color: #445D48;
+    border-color: transparent;
+    color: white;
+}
+
+.down:hover{
+    background-color: #9F2727;
+    border-color: transparent;
+    color: white;
+}
+
+.share:hover{
+    background-color: #4E639A;
+    border-color: transparent;
+    color: white;
+}
+
+.up.active {
+    background-color: #445D48;
+    border-color: transparent;
+    color: white;
+}
+
+.down.active {
+    background-color: #9F2727;
+    border-color: transparent;
+    color: white;
+}
+
+.share.active{
+    background-color: #4E639A;
+    border-color: transparent;
+    color: white;
+}
