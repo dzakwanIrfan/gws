@@ -96,7 +96,7 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Masukan password Anda..">
                 </div>
-                <input type="submit" value="Masuk" class="submit" name="login">
+                <input type="submit" value="Masuk" class="submit">
             </form>
             <p class="atau">- ATAU -</p>
             <small>Belum memiliki akun? <a href="register.php"><b>Daftar Sekarang</b></a></small>

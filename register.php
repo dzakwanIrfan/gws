@@ -13,10 +13,10 @@
         $password=$_POST['password'];
         $confirm=$_POST['confirm'];
 
-        $queryselectusername="SELECT * FROM user where username='$username'";
+        $queryselectusername="SELECT * FROM pengguna where namaUser_pengguna='$username'";
         $resultusername=mysqli_query($conn,$queryselectusername);
 
-        $queryselectemail="SELECT * FROM user where email='$email'";
+        $queryselectemail="SELECT * FROM pengguna where email_pengguna='$email'";
         $resultemail=mysqli_query($conn,$queryselectemail);
 
         if(mysqli_num_rows($resultusername) > 0 && mysqli_num_rows($resultemail)>0){
@@ -27,8 +27,8 @@
             header("Location:register.php?message=email");
         }else {
             if ($password == $confirm) {
-                $queryinsert="INSERT INTO user (name, username, email, password, role) VALUES ('$name', '$username', '$email', '$password','pengguna')";
                 $password = password_hash($password, PASSWORD_DEFAULT);
+                $queryinsert="INSERT INTO pengguna (nama_pengguna, namaUser_pengguna, email_pengguna, kataSandi_pengguna, role_pengguna) VALUES ('$name', '$username', '$email', '$password','penyurvei')";
                 $result=mysqli_query($conn,$queryinsert);
                 if($result){
                     header("Location: login.php?message=success");
