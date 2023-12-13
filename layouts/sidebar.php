@@ -53,5 +53,5 @@
         <a href="create-survey.php"><ion-icon name="add-outline"></ion-icon></a>
         <a href="dashboard-user.php"><ion-icon name="person-outline"></ion-icon></a>
     </nav>
-    <a href="" class="logout"><ion-icon name="log-out-outline"></ion-icon></a>
+    <a href="logout.php" class="logout"><ion-icon name="log-out-outline"></ion-icon></a>
 </div>
