@@ -1,4 +1,8 @@
-<?php ?>
+<?php 
+    if(isset($_POST['submit'])){
+
+    }
+?>
 
 
 <!DOCTYPE html>
@@ -18,7 +22,7 @@
             <div class="input-container">
                 <div class="input-group">
                     <label for="judul">Judul Survei</label>
-                    <input type="text" id="judul" placeholder="Masukan judul survei Anda ...">
+                    <input type="text" name="judul" id="judul" placeholder="Masukan judul survei Anda ...">
                 </div>
                 <div class="input-group">
                     <label for="desk">Deskripsi Survei</label>
@@ -27,10 +31,10 @@
                 <div class="input-group">
                     <label for="gambar">Gambar Survei</label>
                     <img src="assets/images/gambar-survey.png" alt="survei">
-                    <input type="file" id="gambar" class="file">
+                    <input type="file" name="gambar" id="gambar" class="file">
                 </div>
             </div>
-            <input type="submit" value="Buat Survei">
+            <input type="submit" name="submit" value="Buat Survei">
         </form>
     </div>
 </body>
