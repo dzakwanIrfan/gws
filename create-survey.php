@@ -1,12 +1,31 @@
 <?php 
     include 'conection.php';
+    session_start();
 
     if(isset($_POST['submit'])){
         $judul=$_POST['judul'];
-        $deks=$_POST['desk'];
-        $gambar=$_POST['gambar'];
+        $desk=$_POST['desk'];
+        $id=$_SESSION['id'];
 
-        $query="INSERT INTO survei(judul_survei, deskripsi_survei, gambar_survei, )";
+        $img = $_FILES['gambar']['name'];
+        $tmp = $_FILES['gambar']['tmp_name'];
+        if ($img != '') {
+            $path = "image_survei/".$img;
+            $tipe_allowed = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+
+            if ($tipe_allowed != 'jpg' && $tipe_allowed != 'png' && $tipe_allowed != 'jpeg') {
+                echo "<script>alert('Gambar hanya dapat menerima file JPG, PNG, dan JPEG!');</script>";
+            } else {
+                move_uploaded_file($tmp, $path);
+                $query="INSERT INTO survei(judul_survei, deskripsi_survei, gambar_survei, id_pengguna) VALUES('$judul','$desk','$path','$id')";
+                $result = mysqli_query($conn, $query);
+
+                if ($result) {
+                    echo "<script>alert('Survei Berhasil Ditambah!'); document.location = 'index.php';</script>";
+                }
+
+            }
+        }
     }
 ?>
 

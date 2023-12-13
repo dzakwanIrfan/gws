@@ -1,5 +1,5 @@
 <?php
-    include "connection.php";
+    include "conection.php";
     session_start();
 
     if(isset($_SESSION['username']) || isset($_SESSION['email'])){
@@ -12,38 +12,32 @@
         $password=$_POST['password'];
         $passwordError = false;
 
-        $queryselect="SELECT * FROM pengguna where email='$email'";
+        $queryselect="SELECT * FROM pengguna where email_pengguna='$email'";
         $result=mysqli_query($conn,$queryselect);
+        $id_pengguna=mysqli_fetch_array($result);
 
         if(mysqli_num_rows($result) > 0){
             $row=mysqli_fetch_array($result);
-            if(password_verify($password, $row['password'])){
-                if($row['role'] == 'admin'){
-                    $_SESSION['username']=$row['username'];
-                    $_SESSION['email']=$row['email'];
-                    $_SESSION['role']='admin';
-                    $_SESSION['foto_pengguna'] = $row['foto_pengguna'];
+            if(password_verify($password, $row['kataSandi_pengguna'])){
+                if($row['role_pengguna'] == 'admin'){
+                    $_SESSION['username']=$row['namaUser_pengguna'];
+                    $_SESSION['id_pengguna']=$id_pengguna['id_pengguna'];
                     header("Location: admin/index.php");
                     exit;
-                } else if($row['level'] == 'pemilik'){
-                    $_SESSION['username']=$row['username'];
-                    $_SESSION['email']=$row['email'];
-                    $_SESSION['role']='pemilik';
-                    $_SESSION['foto_pengguna'] = $row['foto_pengguna'];
+                } else if($row['role_pengguna'] == 'pemilik'){
+                    $_SESSION['username']=$row['namaUser_pengguna'];
+                    $_SESSION['id_pengguna']=$id_pengguna['id_pengguna'];
                     header("Location: pemilik/index.php");
                     exit;
-                } else if($row['level'] == 'penyurvei'){
-                    $_SESSION['username']=$row['username'];
-                    $_SESSION['email']=$row['email'];
-                    $_SESSION['role']='penyurvei';
-                    $_SESSION['foto_pengguna'] = $row['foto_pengguna'];
+                } else if($row['role_pengguna'] == 'penyurvei'){
+                    $_SESSION['username']=$row['namaUser_pengguna'];
+                    $_SESSION['id_pengguna']=$id_pengguna['id_pengguna'];
+                    echo  "kontol";
                     header("Location: penyurvei/index.php");
                     exit;
-                } else if($row['level'] == 'responden'){
-                    $_SESSION['username']=$row['username'];
-                    $_SESSION['email']=$row['email'];
-                    $_SESSION['role']='responden';
-                    $_SESSION['foto_pengguna'] = $row['foto_pengguna'];
+                } else if($row['role_pengguna'] == 'responden'){
+                    $_SESSION['username']=$row['namaUser_pengguna'];
+                    $_SESSION['id_pengguna']=$id_pengguna['id_pengguna'];
                     header("Location: responden/index.php");
                     exit;
                 }

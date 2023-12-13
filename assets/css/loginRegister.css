@@ -128,6 +128,7 @@
   border-radius: 0.5rem;
   box-sizing: border-box;
   border: none;
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {
