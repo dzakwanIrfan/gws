@@ -240,6 +240,25 @@ body{
     color: white;
 }
 
+.pages{
+    margin: 3rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 0 1rem;
+}
+
+.pages a{
+    text-decoration: none;
+    background-color: #445D48;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.pages a:hover{
+    background-color: #7A957E;
+}
+
 @media only screen and (max-width: 1300px) {
     .sort-span{
         display: none;

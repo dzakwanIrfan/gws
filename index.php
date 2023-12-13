@@ -112,6 +112,11 @@
                 </div>
             </div>
         </div>
+        <div class="pages">
+            <a href="" class="page-left">&lt</a>
+            <a href="" class="page">1</a>
+            <a href="" class="page-right">&gt</a>
+        </div>
     </div>
 
 <script>

@@ -19,10 +19,7 @@
             </div>
             <div class="biodata">
                 <div class="isi-biodata">name@gmail.com</div>
-                <div class="isi-biodata">2004-15-10</div>
                 <div class="isi-biodata">Laki-laki</div>
-                <div class="isi-biodata">087787204325</div>
-                <div class="isi-biodata">Dusun 2 Sidakangen</div>
             </div>
             <div class="ubah-bio"><a href="update-profile.php">Ubah</a></div>
         </div>
