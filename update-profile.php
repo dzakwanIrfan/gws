@@ -24,26 +24,16 @@
                     <input type="text" id="nama" placeholder="Masukan nama Anda..">
                 </div>
                 <div class="input-group">
-                    <label for="telepon">Nomor Telepon</label>
-                    <input type="number" id="telepon" placeholder="Masukan nomor telepon Anda..">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="Masukan Email Anda..">
                 </div>
                 <div class="input-group">
-                    <label for="alamat">Alamat</label>
-                    <input type="text" id="alamat" placeholder="Masukan alamat Anda..">
-                </div>
-                <div class="dropdown-group">
-                    <div class="input-group">
-                        <label for="provinsi">Provinsi</label>
-                        <select name="provinsi" id="provinsi">
-                            <option value="">Pilih Provinsi</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="kota">Kota</label>
-                        <select name="kota" id="kota">
-                            <option value="">Pilih Kota</option>
-                        </select>
-                    </div>
+                    <label for="jenis-kelamin">Jenis-kelamin</label>
+                    <select name="kelamin" id="jenis-kelamin" style="color: rgba(0, 0, 0, 0.5);">
+                        <option disabled selected >Masukan Kelamin Anda..</option>
+                        <option value="laki-laki">Laki-laki</option>
+                        <option value="erempuan">Perempuan</option>
+                    </select>
                 </div>
                 <div class="submit-group">
                     <a href="profile.php" class="batal">Batal</a>

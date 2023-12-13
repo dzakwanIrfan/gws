@@ -27,7 +27,7 @@
                 <td>Laki-laki</td>
                 <td class="action">
                     <a href="profile.php"><ion-icon name="eye-outline" style="background-color: blue; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
-                    <a href=""><ion-icon name="create-outline" style="background-color: yellow; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
+                    <a href="update-profile.php"><ion-icon name="create-outline" style="background-color: yellow; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
                     <a href=""><ion-icon name="trash-outline" style="background-color: red; padding: 4px; border-radius:4px"></ion-icon></a>
                 </td>
             </tr>
