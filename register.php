@@ -1,7 +1,7 @@
 <?php 
     include 'conection.php';
     session_start();
-    if(isset($_SESSION['username']) || isset($_SESSION['emailku'])){
+    if(isset($_SESSION['username']) || isset($_SESSION['email'])){
         header('Location: index.php');
         exit;
     }
@@ -28,6 +28,7 @@
         }else {
             if ($password == $confirm) {
                 $queryinsert="INSERT INTO user (name, username, email, password, role) VALUES ('$name', '$username', '$email', '$password','pengguna')";
+                $password = password_hash($password, PASSWORD_DEFAULT);
                 $result=mysqli_query($conn,$queryinsert);
                 if($result){
                     header("Location: login.php?message=success");
