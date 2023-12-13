@@ -1,29 +1,42 @@
 <?php 
     include 'conection.php';
+    session_start();
+    if(isset($_SESSION['username']) || isset($_SESSION['emailku'])){
+        header('Location: index.php');
+        exit;
+    }
 
     if(isset($_POST['register'])){
-        $name=$_POST['name']? $_POST['name'] : 0;
-        $username=$_POST['username']? $_POST['username'] : 0;
-        $email=$_POST['email']? $_POST['email'] : 0;
-        $password=$_POST['password']? $_POST['username'] : 0;
-        $confirm=$_POST['confirm']? $_POST['confirm'] : 0;
+        $name=$_POST['name'];
+        $username=$_POST['username'];
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        $confirm=$_POST['confirm'];
 
-        $pop="none";
+        $queryselectusername="SELECT * FROM user where username='$username'";
+        $resultusername=mysqli_query($conn,$queryselectusername);
 
-        $queryselect="SELECT * FROM user ORDER BY id ASC";
-        $result=mysqli_query($conn,$queryselect);
-        //gatau masih blom masuk database
-        while($row=mysqli_fetch_array($result)){
-            
-        }
+        $queryselectemail="SELECT * FROM user where email='$email'";
+        $resultemail=mysqli_query($conn,$queryselectemail);
 
-        if($email===$row['email']){
-            $pop="flex";
-        }elseif($username===$row['username']){
-            $pop="flex";
-        }elseif($password==$confirm){
-            $query=="INSERT INTO user(name, username,password,email) VALUES('$name','$username','$password','$email')";
-            $result=mysqli_query($conn,$query);
+        if(mysqli_num_rows($resultusername) > 0 && mysqli_num_rows($resultemail)>0){
+            header("Location:register.php?message=same");
+        }elseif(mysqli_num_rows($resultusername) > 0){
+            header("Location:register.php?message=username");
+        }elseif(mysqli_num_rows($resultemail)>0){
+            header("Location:register.php?message=email");
+        }else {
+            if ($password == $confirm) {
+                $queryinsert="INSERT INTO user (name, username, email, password, role) VALUES ('$name', '$username', '$email', '$password','pengguna')";
+                $result=mysqli_query($conn,$queryinsert);
+                if($result){
+                    header("Location: login.php?message=success");
+                } else {
+                    header("Location: register.php?message=failed");
+                }
+            } else {
+                header("Location: register.php?message=unsync");
+            }
         }
     }
 ?>
@@ -34,7 +47,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="assets/css/loginRegister.css">
     <?php include('layouts/font.php') ?>
 </head>
@@ -42,10 +55,20 @@
     <div class="container" id="register">
         <div class="kanan">
             <h1>Daftar Sekarang</h1>
+            <?php 
+                if($_GET['message']=="same"){
+                    echo "<div class='eror-popup'><span>Username and Email sudah digunakan!</span></div>";
+                }elseif($_GET['message']=="username"){
+                    echo "<div class='eror-popup'><span>Username sudah digunakan!</span></div>";
+                }elseif($_GET['message']=="email"){
+                    echo "<div class='eror-popup'><span>Email sudah digunakan!</span></div>";
+                }elseif($_GET['message']=="unsync"){
+                    echo "<div class='eror-popup'><span>Password dan Konfirmasi Password tidak sesuai!</span></div>";
+                }elseif($_GET['message']=="failed"){
+                    echo "<div class='eror-popup'><span>Gagal terdaftar mohon isi kembali!</span></div>";
+                }
+            ?>
             <form action="" method="post">
-                <div class="eror-popup" id="eror-popup" style="display: <?php echo $pop ?>;">
-                    <span id="eror-text"></span>
-                </div>
                 <div class="input-group">
                     <label for="name">Nama</label>
                     <input type="text" name="name" id="name" placeholder="Masukan nama Anda.." required>
