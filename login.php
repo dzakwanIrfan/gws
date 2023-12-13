@@ -85,6 +85,8 @@
                     echo "<div class='eror-popup'><span>Password dan Konfirmasi Password tidak sesuai!</span></div>";
                 }elseif($_GET['message']=="failed"){
                     echo "<div class='eror-popup'><span>Username atau Password Anda salah!</span></div>";
+                }else if($_GET['message']=="logout"){
+                    echo "<div class='eror-popup'><span>Anda telah logout!</span></div>";
                 }
             ?>
             <form action="" method="post">
