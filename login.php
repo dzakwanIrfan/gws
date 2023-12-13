@@ -11,33 +11,32 @@
         $email=$_POST['email'];
         $password=$_POST['password'];
         $passwordError = false;
+        echo "ada";
 
         $queryselect="SELECT * FROM pengguna where email_pengguna='$email'";
         $result=mysqli_query($conn,$queryselect);
-        $id_pengguna=mysqli_fetch_array($result);
 
         if(mysqli_num_rows($result) > 0){
             $row=mysqli_fetch_array($result);
             if(password_verify($password, $row['kataSandi_pengguna'])){
                 if($row['role_pengguna'] == 'admin'){
                     $_SESSION['username']=$row['namaUser_pengguna'];
-                    $_SESSION['id_pengguna']=$id_pengguna['id_pengguna'];
+                    $_SESSION['id_pengguna']=$row['id_pengguna'];
                     header("Location: admin/index.php");
                     exit;
                 } else if($row['role_pengguna'] == 'pemilik'){
                     $_SESSION['username']=$row['namaUser_pengguna'];
-                    $_SESSION['id_pengguna']=$id_pengguna['id_pengguna'];
+                    $_SESSION['id_pengguna']=$row['id_pengguna'];
                     header("Location: pemilik/index.php");
                     exit;
                 } else if($row['role_pengguna'] == 'penyurvei'){
                     $_SESSION['username']=$row['namaUser_pengguna'];
-                    $_SESSION['id_pengguna']=$id_pengguna['id_pengguna'];
-                    echo  "kontol";
-                    header("Location: penyurvei/index.php");
+                    $_SESSION['id_pengguna']=$row['id_pengguna'];
+                    header("Location: index.php");
                     exit;
                 } else if($row['role_pengguna'] == 'responden'){
                     $_SESSION['username']=$row['namaUser_pengguna'];
-                    $_SESSION['id_pengguna']=$id_pengguna['id_pengguna'];
+                    $_SESSION['id_pengguna']=$row['id_pengguna'];
                     header("Location: responden/index.php");
                     exit;
                 }
@@ -78,9 +77,11 @@
                 }elseif($_GET['message']=="unsync"){
                     echo "<div class='eror-popup'><span>Password dan Konfirmasi Password tidak sesuai!</span></div>";
                 }elseif($_GET['message']=="failed"){
-                    echo "<div class='eror-popup'><span>Username atau Password Anda salah!</span></div>";
+                    echo "<div class='eror-popup'><span>Email atau Password Anda salah!</span></div>";
                 }else if($_GET['message']=="logout"){
                     echo "<div class='eror-popup'><span>Anda telah logout!</span></div>";
+                }else if($_GET['message']=="success"){
+                    echo "<div class='eror-popup'><span>Anda telah terdaftar!</span></div>";
                 }
             ?>
             <form action="" method="post">
@@ -92,7 +93,7 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Masukan password Anda..">
                 </div>
-                <input type="submit" value="Masuk" class="submit">
+                <input type="submit" value="Masuk" class="submit" name="login">
             </form>
             <p class="atau">- ATAU -</p>
             <small>Belum memiliki akun? <a href="register.php"><b>Daftar Sekarang</b></a></small>

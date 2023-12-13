@@ -2,7 +2,7 @@
     include 'conection.php';
     session_start();
 
-    if($_SESSION['username']==0){
+    if(!$_SESSION['username']){
          header('Location:login.php');
     }
 
