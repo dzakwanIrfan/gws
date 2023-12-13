@@ -1,3 +1,15 @@
+<?php 
+    include 'conection.php';
+    session_start();
+
+    // if($_SESSION['username']==0){
+    //     header('Location:login.php');
+    // }
+
+
+    $query="SELECT p.*, q.* FROM survei JOIN pengguna ON p.id_pengguna=q.id_pengguna";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

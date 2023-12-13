@@ -1,6 +1,12 @@
 <?php 
-    if(isset($_POST['submit'])){
+    include 'conection.php';
 
+    if(isset($_POST['submit'])){
+        $judul=$_POST['judul'];
+        $deks=$_POST['desk'];
+        $gambar=$_POST['gambar'];
+
+        $query="INSERT INTO survei(judul_survei, deskripsi_survei, gambar_survei, )";
     }
 ?>
 
