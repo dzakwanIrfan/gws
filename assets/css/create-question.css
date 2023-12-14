@@ -100,4 +100,20 @@ textarea{
     height: 5rem;
     color: #445D48;
     margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.submit{
+    display: block;
+    margin-top: 2rem;
+    border: none;
+    background-color: #D6CC99;
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+    margin: auto;
+    cursor: pointer;
+}
+
+.submit:hover{
+    outline: 2px solid #445D48;
 }
