@@ -93,6 +93,7 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Masukan password Anda..">
                 </div>
+                <small><p style="text-align: right; margin-right: 100px;"><a href="https://api.whatsapp.com/send/?phone=%2B6282313737136&text&type=phone_number&app_absent=0"><b>Lupa Kata Sandi ?</b></a></p></small>
                 <input type="submit" value="Masuk" class="submit" name="login">
             </form>
             <p class="atau">- ATAU -</p>
