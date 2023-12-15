@@ -8,13 +8,11 @@
         $currentTime = date("Y-m-d H:i:s");
         $id=$_SESSION['id_pengguna'];
 
-        echo $id;
         $img = $_FILES['gambar']['name'];
         $tmp = $_FILES['gambar']['tmp_name'];
         if ($img != '') {
             $path = "image_survei/".$img;
             $tipe_allowed = strtolower(pathinfo($img, PATHINFO_EXTENSION));
-            echo $id;
 
             if ($tipe_allowed != 'jpg' && $tipe_allowed != 'png' && $tipe_allowed != 'jpeg') {
                 echo "<script>alert('Gambar hanya dapat menerima file JPG, PNG, dan JPEG!');</script>";
@@ -53,10 +51,10 @@
     <link rel="stylesheet" href="assets/css/create-survey.css">
 </head>
 <body>
-    <!-- <?php include("layouts/sidebar.php"); ?> -->
+    <?php include("layouts/sidebar.php"); ?>
     <div class="container">
         <div class="judul">Kelola Survei</div>
-        <form action="#" method="post">
+        <form action="#" method="post" enctype="multipart/form-data">
             <div class="input-container">
                 <div class="input-group">
                     <label for="judul">Judul Survei</label>
@@ -68,7 +66,7 @@
                 </div>
                 <div class="input-group">
                     <label for="gambar">Gambar Survei</label>
-                    <img src="assets/images/gambar-survey.png" alt="survei">
+                    <img id="gambarinput" style="height: 10rem; width: 100%;">
                     <input type="file" name="gambar" id="gambar" class="file">
                 </div>
             </div>
@@ -76,4 +74,15 @@
         </form>
     </div>
 </body>
+<script>
+        document.getElementById('gambar').addEventListener('change', function(e) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                document.getElementById('gambarinput').src = e.target.result;
+            }
+
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    </script>
 </html>
