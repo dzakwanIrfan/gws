@@ -5,19 +5,22 @@
     if(isset($_POST['submit'])){
         $judul=$_POST['judul'];
         $desk=$_POST['desk'];
-        $id=$_SESSION['id'];
+        $currentTime = date("Y-m-d H:i:s");
+        $id=$_SESSION['id_pengguna'];
 
+        echo $id;
         $img = $_FILES['gambar']['name'];
         $tmp = $_FILES['gambar']['tmp_name'];
         if ($img != '') {
             $path = "image_survei/".$img;
             $tipe_allowed = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+            echo $id;
 
             if ($tipe_allowed != 'jpg' && $tipe_allowed != 'png' && $tipe_allowed != 'jpeg') {
                 echo "<script>alert('Gambar hanya dapat menerima file JPG, PNG, dan JPEG!');</script>";
             } else {
                 move_uploaded_file($tmp, $path);
-                $query="INSERT INTO survei(judul_survei, deskripsi_survei, gambar_survei, id_pengguna) VALUES('$judul','$desk','$path','$id')";
+                $query="INSERT INTO survei(judul_survei, deskripsi_survei, gambar_survei, id_pengguna, waktu_survei) VALUES('$judul','$desk','$path','$id','$currentTime')";
                 $result = mysqli_query($conn, $query);
 
                 if ($result) {
@@ -28,7 +31,7 @@
 
             }
         }else{
-            $query="INSERT INTO survei(judul_survei, deskripsi_survei, id_pengguna) VALUES('$judul','$desk','$id')";
+            $query="INSERT INTO survei(judul_survei, deskripsi_survei, id_pengguna, Waktu_survei) VALUES('$judul','$desk','$id','$currentTime')";
             $result = mysqli_query($conn, $query);
             if ($result) {
                 echo "<script>alert('Survei Berhasil Ditambah!'); document.location = 'index.php';</script>";
@@ -50,10 +53,10 @@
     <link rel="stylesheet" href="assets/css/create-survey.css">
 </head>
 <body>
-    <?php include("layouts/sidebar.php"); ?>
+    <!-- <?php include("layouts/sidebar.php"); ?> -->
     <div class="container">
         <div class="judul">Kelola Survei</div>
-        <form action="#">
+        <form action="#" method="post">
             <div class="input-container">
                 <div class="input-group">
                     <label for="judul">Judul Survei</label>
