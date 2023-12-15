@@ -27,7 +27,7 @@
             header("Location:register.php?message=email");
         }else {
             if ($password == $confirm) {
-                $password = password_hash($password, PASSWORD_DEFAULT);
+                $password = md5($password);
                 $queryinsert="INSERT INTO pengguna (nama_pengguna, namaUser_pengguna, email_pengguna, kataSandi_pengguna, role_pengguna) VALUES ('$name', '$username', '$email', '$password','penyurvei')";
                 $result=mysqli_query($conn,$queryinsert);
                 if($result){

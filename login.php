@@ -18,7 +18,7 @@
 
         if(mysqli_num_rows($result) > 0){
             $row=mysqli_fetch_array($result);
-            if(password_verify($password, $row['kataSandi_pengguna'])){
+            if(md5($password) == $row['kataSandi_pengguna']){
                 if($row['role_pengguna'] == 'admin'){
                     $_SESSION['username']=$row['namaUser_pengguna'];
                     $_SESSION['id_pengguna']=$row['id_pengguna'];
