@@ -259,6 +259,11 @@ body{
     background-color: #7A957E;
 }
 
+.icon{
+    font-size: 25px;
+    padding: 5px 5px;
+}
+
 @media only screen and (max-width: 1300px) {
     .sort-span{
         display: none;

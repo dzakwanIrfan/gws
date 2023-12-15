@@ -40,18 +40,70 @@
         background-color: #8A9E8D;
     }
 
-    .sidebar .logout{
+    .sidebar .logout {
         background-color: #DF1616;
-        margin-top: 25rem;
+        position: absolute;
+        top: 95%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+    }
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 135px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 9999;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 10px; 
+        opacity: 0;
+        transition: opacity 0.3s;
+        background-color: #001524;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .logout-tooltip {
+        background-color: red !important;
+    }  
+
+    ion-icon {
+    font-size: 25px; 
     }
 </style>
 
 
 <div class="sidebar">
     <nav>
-        <a href="index.php"><ion-icon name="home-outline"></ion-icon></a>
-        <a href="create-survey.php"><ion-icon name="add-outline"></ion-icon></a>
-        <a href="dashboard-user.php"><ion-icon name="person-outline"></ion-icon></a>
+        <a href="index.php" class="tooltip">
+            <ion-icon name="home-outline"></ion-icon>
+            <span class="tooltiptext">Beranda</span>
+        </a>
+        <a href="create-survey.php" class="tooltip">
+            <ion-icon name="add-outline"></ion-icon>
+            <span class="tooltiptext">Tambah Survei</span>
+        </a>
+        <a href="dashboard-user.php" class="tooltip">
+            <ion-icon name="person-outline"></ion-icon>
+            <span class="tooltiptext">Profil</span>
+        </a> 
+        <a href="logout.php" class="logout tooltip">
+            <ion-icon name="log-out-outline"></ion-icon>
+            <span class="tooltiptext logout-tooltip">Keluar</span>
+        </a>
     </nav>
-    <a href="logout.php" class="logout"><ion-icon name="log-out-outline"></ion-icon></a>
 </div>

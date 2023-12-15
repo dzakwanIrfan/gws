@@ -60,13 +60,13 @@
                 <div class="action">
                     <div class="votes">
                         <div class="up center" onclick="toggleVote(this)">
-                            <ion-icon name="arrow-up-circle-outline"></ion-icon> <span>Dukung naik</span>
+                            <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> <span>Dukung naik</span>
                         </div>
                         <div class="down center" onclick="toggleVote(this)">
-                            <ion-icon name="arrow-down-circle-outline"></ion-icon> <span>Dukung turun</span>
+                            <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> <span>Dukung turun</span>
                         </div>
                     </div>
-                    <div class="share center" onclick="toggleShare(this)"><ion-icon name="arrow-down-circle-outline"></ion-icon> <span>Bagikan</span></div>
+                    <div class="share center" onclick="toggleShare(this)"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></div>
                 </div>
             </div>
         </div>
@@ -87,13 +87,13 @@
                 <div class="action">
                     <div class="votes">
                         <div class="up center" onclick="toggleVote(this)">
-                            <ion-icon name="arrow-up-circle-outline"></ion-icon> <span>Dukung naik</span>
+                            <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> <span>Dukung naik</span>
                         </div>
                         <div class="down center" onclick="toggleVote(this)">
-                            <ion-icon name="arrow-down-circle-outline"></ion-icon> <span>Dukung turun</span>
+                            <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> <span>Dukung turun</span>
                         </div>
                     </div>
-                    <div class="share center" onclick="toggleShare(this)"><ion-icon name="arrow-down-circle-outline"></ion-icon> <span>Bagikan</span></div>
+                    <div class="share center" onclick="toggleShare(this)"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></div>
                 </div>
             </div>
         </div>
@@ -114,13 +114,13 @@
                 <div class="action">
                     <div class="votes">
                         <div class="up center" onclick="toggleVote(this)">
-                            <ion-icon name="arrow-up-circle-outline"></ion-icon> <span>Dukung naik</span>
+                            <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> <span>Dukung naik</span>
                         </div>
                         <div class="down center" onclick="toggleVote(this)">
-                            <ion-icon name="arrow-down-circle-outline"></ion-icon> <span>Dukung turun</span>
+                            <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> <span>Dukung turun</span>
                         </div>
                     </div>
-                    <div class="share center" onclick="toggleShare(this)"><ion-icon name="arrow-down-circle-outline"></ion-icon> <span>Bagikan</span></div>
+                    <div class="share center" onclick="toggleShare(this)"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></div>
                 </div>
             </div>
         </div>
