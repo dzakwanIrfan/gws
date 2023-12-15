@@ -22,8 +22,18 @@
 
                 if ($result) {
                     echo "<script>alert('Survei Berhasil Ditambah!'); document.location = 'index.php';</script>";
+                }else{
+                    echo "<script>alert('Gagal menambah Survei!'); document.location = 'create-survey.php';</script>";
                 }
 
+            }
+        }else{
+            $query="INSERT INTO survei(judul_survei, deskripsi_survei, id_pengguna) VALUES('$judul','$desk','$id')";
+            $result = mysqli_query($conn, $query);
+            if ($result) {
+                echo "<script>alert('Survei Berhasil Ditambah!'); document.location = 'index.php';</script>";
+            }else{
+                echo "<script>alert('Gagal menambah Survei!'); document.location = 'create-survey.php';</script>";
             }
         }
     }
