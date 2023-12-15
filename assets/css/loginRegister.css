@@ -131,6 +131,19 @@
   color: white;
 }
 
+.eror-popup.success {
+  flex-direction: column;
+  margin-bottom: 1rem;
+  background-color: #445D48;
+  width: 75%;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  border: none;
+  color: white;
+}
+
+
 @media only screen and (max-width: 600px) {
   .kiri {
     display: none;
