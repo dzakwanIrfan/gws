@@ -81,7 +81,7 @@
                 }else if($_GET['message']=="logout"){
                     echo "<div class='eror-popup'><span>Anda telah logout!</span></div>";
                 }else if($_GET['message']=="success"){
-                    echo "<div class='eror-popup'><span>Anda telah terdaftar!</span></div>";
+                    echo "<div class='eror-popup success'><span>Anda telah terdaftar!</span></div>";
                 }
             ?>
             <form action="" method="post">

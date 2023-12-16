@@ -4,6 +4,7 @@
         padding: 0;
         font-family: 'Poppins', sans-serif;
     }
+    
     .sidebar{
         bottom: 0;
         display: flex;
