@@ -7,10 +7,8 @@
     }
     
     $id=$_SESSION['id_pengguna'];
-
-    $query="SELECT survei.*, pengguna.* FROM survei JOIN pengguna ON survei.id_pengguna=pengguna.id_pengguna ORDER BY id_survei ASC";
-    $result=mysqli_query($conn,$query);
    
+    //voting
     if(isset($_GET['voteup'])){
         $vote=$_GET['voteup'];
         $querymemilih="SELECT * FROM memilih where id_pengguna='$id' && id_survei='$vote'";
@@ -86,6 +84,20 @@
             }
         }
     }
+    //end of voting
+
+    //--PAGENATION--//
+    $jumlahDataPerHalaman = 3;
+    $query = "SELECT COUNT(*) as total FROM survei";
+    $result = mysqli_query($conn, $query);
+    $data = mysqli_fetch_assoc($result);
+    $jumlahData = $data['total'];
+    $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
+    $halamanAktif = (isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
+    $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
+    $query="SELECT survei.*, pengguna.* FROM survei JOIN pengguna ON survei.id_pengguna=pengguna.id_pengguna ORDER BY id_survei ASC LIMIT $awalData, $jumlahDataPerHalaman";
+    $result=mysqli_query($conn,$query);
+
 ?>
 
 <!DOCTYPE html>
@@ -105,8 +117,10 @@
                 <form action="">
                     <table>
                         <tr>
-                            <td><input type="text" placeholder="Telusuri"></td>
-                            <td><button type="submit"><ion-icon name="search-outline"></ion-icon></button></td>
+                            <form action="" method="post">
+                                <td><input type="text" name="telusuri" placeholder="Telusuri"></td>
+                                <td><button type="submit" name="search"><ion-icon name="search-outline"></ion-icon></button></td>
+                            </form>
                         </tr>
                     </table>
                 </form>
@@ -142,13 +156,7 @@
                             <a href="survei.php?id=<?php echo $row['id_survei']?>">
                                 <div class="title"><?php echo $row['judul_survei']?></div>
                                 <div class="desk"><?php echo $row['deskripsi_survei']?></div>
-                                <img src="<?php 
-                                            if($row['gambar_survei'!='']){
-                                                echo $row['gambar_survei'];
-                                            }else{
-                                                echo "assets/images/gambar-survey.png";
-                                            }
-                                            ?>" class="banner">
+                                <img src="<?php echo $row['gambar_survei']?>" class="banner" style="height: 10rem; width: 100%;">
                             </a>
                             <div class="action">
                                 <div class="votes">
@@ -164,16 +172,25 @@
                         </div>
                     </div>      
                 <?php
-                $count++;
-                if($count>=3){
-                    break;
-                }
             }
         ?>
         <div class="pages">
-            <a href="" class="page-left">&lt</a>
-            <a href="" class="page">1</a>
-            <a href="" class="page-right">&gt</a>
+            <!-- Pagination -->
+            <?php if ($halamanAktif > 1) : ?>
+                <a href="?halaman=<?= $halamanAktif - 1 ?>" class="page-left">&lt;</a> <!-- &laquo; left arrow -->
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+                <?php if ($i == $halamanAktif) : ?>
+                    <a href="?halaman=<?= $i; ?>" class="page" style="background-color:#7a957e !important;"><?= $i; ?></a>
+                <?php else : ?>
+                    <a href="?halaman=<?= $i; ?>" class="page"><?= $i; ?></a>
+                <?php endif; ?>
+            <?php endfor; ?>
+
+            <?php if ($halamanAktif < $jumlahHalaman) : ?>
+                <a href="?halaman=<?= $halamanAktif + 1 ?>" class="page-right">&gt;</a> <!-- &raquo; right arrow -->
+        <?php endif; ?>
         </div>
     </div>
 

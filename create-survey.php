@@ -29,7 +29,7 @@
 
             }
         }else{
-            $query="INSERT INTO survei(judul_survei, deskripsi_survei, id_pengguna, Waktu_survei) VALUES('$judul','$desk','$id','$currentTime')";
+            $query="INSERT INTO survei(judul_survei, deskripsi_survei, id_pengguna, Waktu_survei, gambar_survei) VALUES('$judul','$desk','$id','$currentTime','assets/images/gambar-survey.png')";
             $result = mysqli_query($conn, $query);
             if ($result) {
                 echo "<script>alert('Survei Berhasil Ditambah!'); document.location = 'index.php';</script>";
