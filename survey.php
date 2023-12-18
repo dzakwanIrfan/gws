@@ -1,6 +1,7 @@
 <?php
     include("conection.php");
     session_start();
+    
     if($_GET['id']){
         $id = $_GET['id'];
     
@@ -41,7 +42,20 @@
                 }
             }
         }
-        header("Location: index.php");
+        echo "<script>alert('Berhasil menambahkan jawaban!'); document.location = 'index.php';</script>";
+    }else{
+        $id = $_GET['id'];
+        $sql_s = "SELECT id_pertanyaan FROM `pertanyaan` WHERE id_survei = $id;";
+        $query_s = mysqli_query($conn, $sql_s);
+        $id_pengguna_s = $_SESSION['id_pengguna'];
+        while($row_s = mysqli_fetch_assoc($query_s)){
+            $id_pertanyaan_s = $row_s['id_pertanyaan'];
+            $sql_secure = "SELECT * FROM jawaban WHERE id_pertanyaan = '$id_pertanyaan_s' AND id_pengguna = '$id_pengguna_s';";
+            $query_secure = mysqli_query($conn, $sql_secure);
+            if(mysqli_fetch_assoc($query_secure)){
+                echo "<script>alert('Anda sudah menjawab survei ini!'); document.location = 'index.php';</script>";
+            }
+        }
     }
     
 ?>
