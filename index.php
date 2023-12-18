@@ -159,8 +159,8 @@
                                 </div>
                             </div>
                             <a href="survey.php?id=<?php echo $row['id_survei']?>">
-                                <div class="title"><?php echo $row['judul_survei']?></div>
-                                <div class="desk"><?php echo $row['deskripsi_survei']?></div>
+                                <div class="title"><?php echo mb_strimwidth($row['judul_survei'],0,50,'...'); ?></div>
+                                <div class="desk"><?php echo mb_strimwidth($row['deskripsi_survei'],0,100,'...');?></div>
                                 <img src="<?php echo $row['gambar_survei']?>" class="banner" style="height: 10rem; width: 100%;">
                             </a>
                             <div class="action">

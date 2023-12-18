@@ -20,7 +20,8 @@
             if ($question != null) {
                 $query = "INSERT INTO pertanyaan(pertanyaan, id_survei) VALUES('$question[$nomor]', $id)";
                 $result = mysqli_query($conn, $query);
-            
+                
+                $queryselect="";
                 if ($result) {
                     $nomor++;
                 } else {

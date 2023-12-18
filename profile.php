@@ -1,5 +1,7 @@
 <?php
     include("conection.php");
+    session_start();
+
     $id = $_GET['id'];
     //profil pengguna
     $sql = "SELECT * FROM pengguna WHERE id_pengguna = $id;";
