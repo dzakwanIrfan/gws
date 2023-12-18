@@ -1,25 +1,15 @@
-<?php 
-    include 'conection.php';
+<?php
+    include("conection.php");
+    $id = $_GET['id'];
+    //profil pengguna
+    $sql = "SELECT * FROM pengguna WHERE id_pengguna = $id;";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($query);
 
-    session_start();
-
-    if(!$_SESSION['username']){
-         header('Location:login.php');
-    }
-    
-    $id=$_SESSION['id_pengguna'];
-
-    $query="SELECT survei.*, pengguna.* FROM survei JOIN pengguna ON survei.id_pengguna=pengguna.id_pengguna WHERE survei.id_pengguna='$id'";
-    $result=mysqli_query($conn,$query);
-    $row=mysqli_fetch_array($result);
-
-    if($row['foto_pengguna']!=''){
-        $image=$row['foto_pengguna'];
-    }else{
-        $image='assets/images/profile-picture.png';
-    }
+    //survei pengguna
+    $sql_s = "SELECT * FROM survei WHERE id_pengguna = $id;";
+    $query_s = mysqli_query($conn, $sql_s);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,37 +25,51 @@
         <div class="container-profile">
             <h1>Profil</h1>
             <div class="bio">
-                <img src="<?php echo $image ?>" alt="">
-                <div class="nama"><?php echo $row['nama_pengguna']?></div>
-                <div class="username"><?php echo $row['namaUser_pengguna']?></div>
+                <img src="assets/images/profile-picture.png" alt="">
+                <div class="nama">Nama Pengguna</div>
+                <div class="username">username</div>
             </div>
             <div class="biodata">
-                <div class="isi-biodata"><?php echo $row['email_pengguna']?></div>
-                <div class="isi-biodata">
-                    <?php 
-                        if($row['jenisKelamin_pengguna']==''){
-                            echo 'belom mengisi jenis kelamin';
-                        }else{
-                            echo $row['jenisKelamin_pengguna'];
-                        }
-                    ?>
-                </div>
+                <div class="isi-biodata">name@gmail.com</div>
+                <div class="isi-biodata">Laki-laki</div>
             </div>
-            <div class="ubah-bio"><a href="update-profile.php">Ubah</a></div>
+            <div class="ubah-bio"><a href="update-profile.php?id=<?= $row['id_pengguna'] ?>">Ubah</a></div>
         </div>
         <div class="container-riwayat">
             <div class="riwayat-judul">Riwayat Pembuatan Survey</div>
             <div class="riwayat">
-                <?php 
-                    while($row=mysqli_fetch_array($result)){
-                        ?>
-                        <a href="survey.php?id=<?php echo $row['id_survei'] ?>" class="riwayat-group">
-                            <div class="judul-riwayat"><?php echo $row['judul_survei'] ?></div>
-                            <div class="waktu-riwayat"><?php echo $row['waktu_survei']?></div>
-                        </a>
-                        <?php
-                    } 
-                ?>
+                <a href="#" class="riwayat-group">
+                    <div class="judul-riwayat">Judul Survei</div>
+                    <div class="waktu-riwayat">1 December 2023</div>
+                </a>
+                <a href="#" class="riwayat-group">
+                    <div class="judul-riwayat">Judul Survei</div>
+                    <div class="waktu-riwayat">1 December 2023</div>
+                </a>
+                <a href="#" class="riwayat-group">
+                    <div class="judul-riwayat">Judul Survei</div>
+                    <div class="waktu-riwayat">1 December 2023</div>
+                </a>
+                <a href="#" class="riwayat-group">
+                    <div class="judul-riwayat">Judul Survei</div>
+                    <div class="waktu-riwayat">1 December 2023</div>
+                </a>
+                <a href="#" class="riwayat-group">
+                    <div class="judul-riwayat">Judul Survei</div>
+                    <div class="waktu-riwayat">1 December 2023</div>
+                </a>
+                <a href="#" class="riwayat-group">
+                    <div class="judul-riwayat">Judul Survei</div>
+                    <div class="waktu-riwayat">1 December 2023</div>
+                </a>
+                <a href="#" class="riwayat-group">
+                    <div class="judul-riwayat">Judul Survei</div>
+                    <div class="waktu-riwayat">1 December 2023</div>
+                </a>
+                <a href="#" class="riwayat-group">
+                    <div class="judul-riwayat">Judul Survei bawah</div>
+                    <div class="waktu-riwayat">1 December 2023</div>
+                </a>
             </div>
         </div>
     </div>

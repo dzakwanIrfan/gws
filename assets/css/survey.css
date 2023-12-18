@@ -29,8 +29,8 @@ a{
 }
 
 .profile img{
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 4rem;
+    height: 4rem;
     background-color: white;
     padding: 2.5px;
     object-fit: cover;
@@ -39,12 +39,14 @@ a{
 }
 
 .profile-desk{
-    line-height: 1rem;
+    text-align: left;
+    line-height: 1.5rem;
 }
 
 .profile-desk .name{
     font-weight: 600;
     color: #001524;
+    font-size: 1.5rem;
 }
 
 .profile-desk .date small{
