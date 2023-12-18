@@ -44,7 +44,7 @@
             <div class="riwayat-judul">Riwayat Pembuatan Survey</div>
             <div class="riwayat">
                 <?php while($row_s = mysqli_fetch_assoc($query_s)){ ?>
-                <a href="survey.php?id=<?= $row_s['id_survei'] ?>" class="riwayat-group">
+                <a href="survey-laporan.php?id=<?= $row_s['id_survei'] ?>" class="riwayat-group">
                     <div class="judul-riwayat"><?= $row_s['judul_survei'] ?></div>
                     <div class="waktu-riwayat"><?= $row_s['waktu_survei'] ?></div>
                 </a>
