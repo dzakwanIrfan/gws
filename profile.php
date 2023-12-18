@@ -1,6 +1,11 @@
 <?php
     include("conection.php");
-    $id = $_GET['id'];
+    session_start();
+    if($_GET['id']){
+        $id = $_GET['id'];
+    }else{
+        $id = $_SESSION['id_pengguna'];
+    }
     //profil pengguna
     $sql = "SELECT * FROM pengguna WHERE id_pengguna = $id;";
     $query = mysqli_query($conn, $sql);
@@ -22,54 +27,28 @@
 <body>
     <?php include("layouts/sidebar.php"); ?>
     <div class="profile-container">
-        <div class="container-profile">
+    <div class="container-profile">
             <h1>Profil</h1>
             <div class="bio">
-                <img src="assets/images/profile-picture.png" alt="">
-                <div class="nama">Nama Pengguna</div>
-                <div class="username">username</div>
+                <img src="<?= $row['foto_pengguna'] ?>" alt="Foto Pengguna">
+                <div class="nama"><?= $row['nama_pengguna'] ?></div>
+                <div class="username"><?= $row['namaUser_pengguna'] ?></div>
             </div>
             <div class="biodata">
-                <div class="isi-biodata">name@gmail.com</div>
-                <div class="isi-biodata">Laki-laki</div>
+                <div class="isi-biodata"><?= $row['email_pengguna'] ?></div>
+                <div class="isi-biodata"><?= $row['jenisKelamin_pengguna'] ?></div>
             </div>
             <div class="ubah-bio"><a href="update-profile.php?id=<?= $row['id_pengguna'] ?>">Ubah</a></div>
         </div>
         <div class="container-riwayat">
             <div class="riwayat-judul">Riwayat Pembuatan Survey</div>
             <div class="riwayat">
-                <a href="#" class="riwayat-group">
-                    <div class="judul-riwayat">Judul Survei</div>
-                    <div class="waktu-riwayat">1 December 2023</div>
+                <?php while($row_s = mysqli_fetch_assoc($query_s)){ ?>
+                <a href="survey.php?id=<?= $row_s['id_survei'] ?>" class="riwayat-group">
+                    <div class="judul-riwayat"><?= $row_s['judul_survei'] ?></div>
+                    <div class="waktu-riwayat"><?= $row_s['waktu_survei'] ?></div>
                 </a>
-                <a href="#" class="riwayat-group">
-                    <div class="judul-riwayat">Judul Survei</div>
-                    <div class="waktu-riwayat">1 December 2023</div>
-                </a>
-                <a href="#" class="riwayat-group">
-                    <div class="judul-riwayat">Judul Survei</div>
-                    <div class="waktu-riwayat">1 December 2023</div>
-                </a>
-                <a href="#" class="riwayat-group">
-                    <div class="judul-riwayat">Judul Survei</div>
-                    <div class="waktu-riwayat">1 December 2023</div>
-                </a>
-                <a href="#" class="riwayat-group">
-                    <div class="judul-riwayat">Judul Survei</div>
-                    <div class="waktu-riwayat">1 December 2023</div>
-                </a>
-                <a href="#" class="riwayat-group">
-                    <div class="judul-riwayat">Judul Survei</div>
-                    <div class="waktu-riwayat">1 December 2023</div>
-                </a>
-                <a href="#" class="riwayat-group">
-                    <div class="judul-riwayat">Judul Survei</div>
-                    <div class="waktu-riwayat">1 December 2023</div>
-                </a>
-                <a href="#" class="riwayat-group">
-                    <div class="judul-riwayat">Judul Survei bawah</div>
-                    <div class="waktu-riwayat">1 December 2023</div>
-                </a>
+                <?php } ?>
             </div>
         </div>
     </div>

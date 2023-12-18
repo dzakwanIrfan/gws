@@ -40,9 +40,9 @@
                 <td><?= $row['email_pengguna'] ?></td>
                 <td><?= $row['jenisKelamin_pengguna'] ?></td>
                 <td class="action">
-                    <a href="profile.php?id=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="eye-outline" style="color: white; background-color: blue; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
-                    <a href="update-profile.php?id=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="create-outline" style="background-color: yellow; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
-                    <a href="dashboard-user.php?del=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="trash-outline" style="color: white; background-color: red; padding: 4px; border-radius:4px"></ion-icon></a>
+                    <a href="profile.php?id=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="eye-outline" style="color: white; background-color: #4E639A; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
+                    <a href="update-profile.php?id=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="create-outline" style="background-color: #D6DA15; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
+                    <a href="dashboard-user.php?del=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="trash-outline" style="color: white; background-color: #9F2727; padding: 4px; border-radius:4px"></ion-icon></a>
                 </td>
             </tr>
             <?php } ?>
