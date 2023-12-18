@@ -32,36 +32,6 @@
                         <div class="option"><input type="radio" id="5" name="1"><label for="5">Option 5</label></div>
                     </div>
                 </div>
-                <div class="question-group">
-                    <div class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sequi soluta fuga mollitia architecto odio dolorem eum doloremque ipsum corrupti?</div>
-                    <div class="option-group">
-                        <div class="option"><input type="radio" id="1" name="2"><label for="1">Option 1</label></div>
-                        <div class="option"><input type="radio" id="2" name="2"><label for="2">Option 2</label></div>
-                        <div class="option"><input type="radio" id="3" name="2"><label for="3">Option 3</label></div>
-                        <div class="option"><input type="radio" id="4" name="2"><label for="4">Option 4</label></div>
-                        <div class="option"><input type="radio" id="5" name="2"><label for="5">Option 5</label></div>
-                    </div>
-                </div>
-                <div class="question-group">
-                    <div class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sequi soluta fuga mollitia architecto odio dolorem eum doloremque ipsum corrupti?</div>
-                    <div class="option-group">
-                        <div class="option"><input type="radio" id="1" name="3"><label for="1">Option 1</label></div>
-                        <div class="option"><input type="radio" id="2" name="3"><label for="2">Option 2</label></div>
-                        <div class="option"><input type="radio" id="3" name="3"><label for="3">Option 3</label></div>
-                        <div class="option"><input type="radio" id="4" name="3"><label for="4">Option 4</label></div>
-                        <div class="option"><input type="radio" id="5" name="3"><label for="5">Option 5</label></div>
-                    </div>
-                </div>
-                <div class="question-group">
-                    <div class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sequi soluta fuga mollitia architecto odio dolorem eum doloremque ipsum corrupti?</div>
-                    <div class="option-group">
-                        <div class="option"><input type="radio" id="1" name="4"><label for="1">Option 1</label></div>
-                        <div class="option"><input type="radio" id="2" name="4"><label for="2">Option 2</label></div>
-                        <div class="option"><input type="radio" id="3" name="4"><label for="3">Option 3</label></div>
-                        <div class="option"><input type="radio" id="4" name="4"><label for="4">Option 4</label></div>
-                        <div class="option"><input type="radio" id="5" name="4"><label for="5">Option 5</label></div>
-                    </div>
-                </div>
                 <input type="submit" value="Kirim Jawaban">
             </div>
         </form>
