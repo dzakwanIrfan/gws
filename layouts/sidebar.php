@@ -16,6 +16,7 @@
         position: absolute;
         position: fixed;
         align-items: center;
+        z-index: 999;
     }
 
     nav{
