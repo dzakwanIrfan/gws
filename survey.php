@@ -32,49 +32,21 @@
                         <div class="option"><input type="radio" id="5" name="1"><label for="5">Option 5</label></div>
                     </div>
                 </div>
-                <div class="question-group">
-                    <div class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sequi soluta fuga mollitia architecto odio dolorem eum doloremque ipsum corrupti?</div>
-                    <div class="option-group">
-                        <div class="option"><input type="radio" id="1" name="2"><label for="1">Option 1</label></div>
-                        <div class="option"><input type="radio" id="2" name="2"><label for="2">Option 2</label></div>
-                        <div class="option"><input type="radio" id="3" name="2"><label for="3">Option 3</label></div>
-                        <div class="option"><input type="radio" id="4" name="2"><label for="4">Option 4</label></div>
-                        <div class="option"><input type="radio" id="5" name="2"><label for="5">Option 5</label></div>
-                    </div>
-                </div>
-                <div class="question-group">
-                    <div class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sequi soluta fuga mollitia architecto odio dolorem eum doloremque ipsum corrupti?</div>
-                    <div class="option-group">
-                        <div class="option"><input type="radio" id="1" name="3"><label for="1">Option 1</label></div>
-                        <div class="option"><input type="radio" id="2" name="3"><label for="2">Option 2</label></div>
-                        <div class="option"><input type="radio" id="3" name="3"><label for="3">Option 3</label></div>
-                        <div class="option"><input type="radio" id="4" name="3"><label for="4">Option 4</label></div>
-                        <div class="option"><input type="radio" id="5" name="3"><label for="5">Option 5</label></div>
-                    </div>
-                </div>
-                <div class="question-group">
-                    <div class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sequi soluta fuga mollitia architecto odio dolorem eum doloremque ipsum corrupti?</div>
-                    <div class="option-group">
-                        <div class="option"><input type="radio" id="1" name="4"><label for="1">Option 1</label></div>
-                        <div class="option"><input type="radio" id="2" name="4"><label for="2">Option 2</label></div>
-                        <div class="option"><input type="radio" id="3" name="4"><label for="3">Option 3</label></div>
-                        <div class="option"><input type="radio" id="4" name="4"><label for="4">Option 4</label></div>
-                        <div class="option"><input type="radio" id="5" name="4"><label for="5">Option 5</label></div>
-                    </div>
-                </div>
                 <input type="submit" value="Kirim Jawaban">
             </div>
         </form>
         <div class="action">
             <div class="votes">
-                <div class="up center" onclick="toggleVote(this)">
-                    <ion-icon name="arrow-up-circle-outline"></ion-icon> <span>Dukung naik</span>
-                </div>
-                <div class="down center" onclick="toggleVote(this)">
-                    <ion-icon name="arrow-down-circle-outline"></ion-icon> <span>Dukung turun</span>
-                </div>
+                <a href="?voteup=<?php echo $row['id_survei'] ?>" class="up center" onclick="toggleVote(this)">
+                    <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> 
+                    <span>Dukung naik</span>
+                </a>
+                <a href="?votedown=<?php echo $row['id_survei'] ?>" class="down center" onclick="toggleVote(this)">
+                    <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> 
+                    <span>Dukung turun</span>
+                </a>
             </div>
-            <div class="share center" onclick="toggleShare(this)"><ion-icon name="arrow-down-circle-outline"></ion-icon> <span>Bagikan</span></div>
+            <button class="share center" onclick="toggleShare(this)"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></button>
         </div>
     </div>
 
