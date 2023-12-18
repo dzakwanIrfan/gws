@@ -107,6 +107,12 @@
         namaUser_pengguna LIKE '%$keyword%' 
         ";
         $result=mysqli_query($conn,$query);
+
+        if(mysqli_num_rows($result)==0){
+            echo "<div style='position: absolute; top: 150px; width: 100%; display: flex; justify-content: center; align-items: center;'>
+                    Tidak ditemukan
+                  </div>";
+        }
     }
 ?>
 

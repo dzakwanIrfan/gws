@@ -16,7 +16,7 @@
         position: absolute;
         position: fixed;
         align-items: center;
-        z-index: 999;
+        z-index: 9999;
     }
 
     nav{
