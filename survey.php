@@ -1,24 +1,48 @@
 <?php
     include("conection.php");
-    $id = $_GET['id'];
-
-    //survei
-    $sql = "SELECT * FROM survei WHERE id_survei = $id;";
-    $query = mysqli_query($conn, $sql);
-    $result = mysqli_fetch_assoc($query);
-
-    //user
-    $id_user = $result['id_pengguna'];
-    $sql_user = "SELECT * FROM pengguna WHERE id_pengguna = $id_user";
-    $query_user = mysqli_query($conn, $sql_user);
-    $result_user = mysqli_fetch_assoc($query_user);
-
-    //pertanyaan
-    $sql_q = "SELECT * FROM pertanyaan WHERE id_survei = $id;";
-    $query_q = mysqli_query($conn, $sql_q);
-
-    //opsi
+    session_start();
+    if($_GET['id']){
+        $id = $_GET['id'];
     
+        //survei
+        $sql = "SELECT * FROM survei WHERE id_survei = $id;";
+        $query = mysqli_query($conn, $sql);
+        $result = mysqli_fetch_assoc($query);
+    
+        //user
+        $id_user = $result['id_pengguna'];
+        $sql_user = "SELECT * FROM pengguna WHERE id_pengguna = $id_user";
+        $query_user = mysqli_query($conn, $sql_user);
+        $result_user = mysqli_fetch_assoc($query_user);
+    
+        //pertanyaan
+        $sql_q = "SELECT * FROM pertanyaan WHERE id_survei = $id;";
+        $query_q = mysqli_query($conn, $sql_q);
+    }
+    
+    //input
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kirim'])) {
+        foreach ($_POST as $pertanyaan_id => $jawaban_id) {
+            if (!empty($jawaban_id) && is_numeric($jawaban_id) && is_numeric($pertanyaan_id)) {
+                $pertanyaan_id = mysqli_real_escape_string($conn, $pertanyaan_id);
+                $jawaban_id = mysqli_real_escape_string($conn, $jawaban_id);
+    
+                $id_pengguna = $_SESSION['id_pengguna']; 
+    
+                $waktu_jawaban = date("Y-m-d H:i:s");
+    
+                $sql_insert_jawaban = "INSERT INTO jawaban (jawaban, id_pengguna, id_pertanyaan, waktu_jawaban) VALUES ('$jawaban_id', '$id_pengguna', '$pertanyaan_id', '$waktu_jawaban')";
+                
+                $result_insert_jawaban = mysqli_query($conn, $sql_insert_jawaban);
+    
+                if (!$result_insert_jawaban) {
+                    echo "Error in inserting answer: " . mysqli_error($conn);
+                    exit;
+                }
+            }
+        }
+        header("Location: index.php");
+    }
     
 ?>
 
@@ -44,7 +68,7 @@
         <div class="title"><?= $result['judul_survei'] ?></div>
         <div class="desc"><?= $result['deskripsi_survei'] ?></div>
         <img src="<?= $result['gambar_survei'] ?>" alt="survei">
-        <form action="">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
             <div class="question-container">
                 <?php while($result_q = mysqli_fetch_assoc($query_q)){ ?>
                 <div class="question-group">
@@ -61,7 +85,7 @@
                     </div>
                 </div>
                 <?php } ?>
-                <input type="submit" value="Kirim Jawaban">
+                <input type="submit" value="Kirim Jawaban" name="kirim">
             </div>
         </form>
         <div class="action">

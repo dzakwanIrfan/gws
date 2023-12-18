@@ -12,6 +12,7 @@ body{
     margin-left: 20%;
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 table{
