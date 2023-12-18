@@ -164,7 +164,7 @@
                                         <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> 
                                         <span>Dukung naik</span>
                                     </a>
-                                    <a href="?votedown=<?php echo $row['id_survei'] ?>" type="submit" class="down center" onclick="toggleVote(this)">
+                                    <a href="?votedown=<?php echo $row['id_survei'] ?>" class="down center" onclick="toggleVote(this)">
                                         <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> 
                                         <span>Dukung turun</span>
                                     </a>
