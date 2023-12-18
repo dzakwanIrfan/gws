@@ -125,14 +125,23 @@ a{
     gap: 1rem;
 }
 
+.votes a{
+    display: flex;
+}
+
 .center{
     display: flex;
-    align-items: center;
+    align-items: center; 
+    justify-content: center;
     border: 2px solid #001524;
     padding: 0.5rem 1rem;
     border-radius: 1rem;
     font-weight: 600;
     cursor: pointer;
+}
+
+.icon {
+    font-size: 25px;
 }
 
 .up:hover{

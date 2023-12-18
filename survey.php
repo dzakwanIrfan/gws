@@ -67,14 +67,16 @@
         </form>
         <div class="action">
             <div class="votes">
-                <div class="up center" onclick="toggleVote(this)">
-                    <ion-icon name="arrow-up-circle-outline"></ion-icon> <span>Dukung naik</span>
-                </div>
-                <div class="down center" onclick="toggleVote(this)">
-                    <ion-icon name="arrow-down-circle-outline"></ion-icon> <span>Dukung turun</span>
-                </div>
+                <a href="?voteup=<?php echo $row['id_survei'] ?>" class="up center" onclick="toggleVote(this)">
+                    <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> 
+                    <span>Dukung naik</span>
+                </a>
+                <a href="?votedown=<?php echo $row['id_survei'] ?>" class="down center" onclick="toggleVote(this)">
+                    <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> 
+                    <span>Dukung turun</span>
+                </a>
             </div>
-            <div class="share center" onclick="toggleShare(this)"><ion-icon name="arrow-down-circle-outline"></ion-icon> <span>Bagikan</span></div>
+            <button class="share center" onclick="toggleShare(this)"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></button>
         </div>
     </div>
 
