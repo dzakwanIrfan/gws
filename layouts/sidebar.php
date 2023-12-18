@@ -99,7 +99,7 @@
             <ion-icon name="add-outline"></ion-icon>
             <span class="tooltiptext">Tambah Survei</span>
         </a>
-        <a href="dashboard-user.php" class="tooltip">
+        <a href="profile.php" class="tooltip">
             <ion-icon name="person-outline"></ion-icon>
             <span class="tooltiptext">Profil</span>
         </a> 

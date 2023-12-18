@@ -22,7 +22,11 @@
                 $result = mysqli_query($conn, $query);
 
                 if ($result) {
-                    echo "<script>alert('Survei Berhasil Ditambah!'); document.location = 'index.php';</script>";
+                    $query="SELECT id_survei FROM survei WHERE judul_survei='$judul' && id_pengguna='$id'";
+                    $result=mysqli_query($conn,$query);
+                    $row=mysqli_fetch_array($result);
+                    $id_survei=$row['id_survei'];
+                    echo "<script>alert('Survei Berhasil Ditambah!'); document.location = 'create-question.php?id=$id_survei';</script>";
                 }else{
                     echo "<script>alert('Gagal menambah Survei!'); document.location = 'create-survey.php';</script>";
                 }
@@ -32,7 +36,11 @@
             $query="INSERT INTO survei(judul_survei, deskripsi_survei, id_pengguna, Waktu_survei, gambar_survei) VALUES('$judul','$desk','$id','$currentTime','assets/images/gambar-survey.png')";
             $result = mysqli_query($conn, $query);
             if ($result) {
-                echo "<script>alert('Survei Berhasil Ditambah!'); document.location = 'index.php';</script>";
+                $query="SELECT id_survei FROM survei WHERE judul_survei='$judul' && id_pengguna='$id'";
+                $result=mysqli_query($conn,$query);
+                $row=mysqli_fetch_array($result);
+                $id_survei=$row['id_survei'];
+                echo "<script>alert('Survei Berhasil Ditambah!'); document.location = 'create-question.php?id=$id_survei';</script>";
             }else{
                 echo "<script>alert('Gagal menambah Survei!'); document.location = 'create-survey.php';</script>";
             }
