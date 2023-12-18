@@ -10,12 +10,11 @@ body{
 
 .container{
     margin-left: 5rem;
+
 }
 
 .heading{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
 }
 
 /* Search */
@@ -27,12 +26,13 @@ body{
 .search table {
     border-collapse: separate;
     border-spacing: 0;
-    width: 65dvw;
+    width: 94%;
 }
 
 .search td{
     border: 1px solid #001524;
     padding: 0.5rem 1rem;
+    border-radius: 5rem 0 0 5rem;
 }
 
 .search td:first-child{

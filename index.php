@@ -114,18 +114,16 @@
     <div class="container">
         <div class="heading">
             <div class="search">
-                <form action="">
-                    <table>
-                        <tr>
-                            <form action="" method="post">
-                                <td><input type="text" name="telusuri" placeholder="Telusuri"></td>
-                                <td><button type="submit" name="search"><ion-icon name="search-outline"></ion-icon></button></td>
-                            </form>
-                        </tr>
-                    </table>
-                </form>
+                <table>
+                    <tr>
+                        <form action="" method="post">
+                            <td><input type="text" name="telusuri" placeholder="Telusuri"></td>
+                            <td><button type="submit" name="search"><ion-icon name="search-outline"></ion-icon></button></td>
+                        </form>
+                    </tr>
+                </table>
             </div>
-            <div class="sort">
+            <!-- <div class="sort">
                 <div class="sort-select" onclick="toggleDropdown()">
                     <span class="sort-span">Urutkan berdasarkan</span> <ion-icon name="chevron-down-outline"></ion-icon>
                     <div class="dropdown-content">
@@ -133,7 +131,7 @@
                         <a href="#">Pendukung naik</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <?php 
             while($row=mysqli_fetch_array($result)){
