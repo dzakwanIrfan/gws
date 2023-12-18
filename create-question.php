@@ -1,5 +1,12 @@
 <?php 
-    
+    include 'conection.php';
+    session_start();
+
+    $id=$_GET['id'];
+
+    $query="SELECT judul_survei, deskripsi_survei FROM survei WHERE id_survei='$id'";
+    $result=mysqli_query($conn,$query);
+    $row=mysqli_fetch_array($result);
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +21,8 @@
 <body>
     <?php include("layouts/sidebar.php"); ?>
     <div class="container">
-        <div class="title">Judul Survei</div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit veritatis consequuntur laborum tempora sunt incidunt laudantium, vel, eum voluptatibus itaque porro cumque quia, inventore dolorem doloribus ipsa quidem! Amet, excepturi et laboriosam commodi fuga ullam repellat expedita repellendus itaque quisquam minima, fugit autem maiores voluptatum, magnam ipsa quos in. Repudiandae?</p>
+        <div class="title"><?php echo $row['judul_survei']; ?></div>
+        <p><?php echo $row['deskripsi_survei'] ?></p>
         <form action="">
         <div class="question-container">
             <ion-icon name="close-circle-outline" class="delete-question" onclick="deleteQuestion(1)"></ion-icon>
