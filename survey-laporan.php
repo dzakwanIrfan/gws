@@ -38,134 +38,33 @@
                         <div class="laporan">
                             <div class="laporan-pertanyaan"><?php echo $rowquest['pertanyaan']?></div>
                             <div class="laporan-opsi">
-                                <div class="grup-opsi">
                                     <?php 
-                                        $queryoption="SELECT * FROM pertanyaan WHERE id_pertanyaan=''";
-                                    ?>
-                                    <div class="label-opsi">
-                                        <div class="opsi">Lorem, ipsum.</div>
-                                        <div class="opsi-jumlah"><span>85</span> suara</div>
-                                    </div>
-                                    <div class="persen-opsi">
-                                        <div class="batang" style="width: 85%;" ></div>
-                                    </div>
-                                </div>
-                                <div class="grup-opsi">
-                                    <div class="label-opsi">
-                                        <div class="opsi">Lorem, ipsum.</div>
-                                        <div class="opsi-jumlah"><span>15</span> suara</div>
-                                    </div>
-                                    <div class="persen-opsi">
-                                        <div class="batang" style="width: 15%;" ></div>
-                                    </div>
-                                </div>
-                                <div class="grup-opsi">
-                                    <div class="label-opsi">
-                                        <div class="opsi">Lorem, ipsum.</div>
-                                        <div class="opsi-jumlah"><span>24</span> suara</div>
-                                    </div>
-                                    <div class="persen-opsi">
-                                        <div class="batang" style="width: 24%;" ></div>
-                                    </div>
-                                </div>
-                                <div class="grup-opsi">
-                                    <div class="label-opsi">
-                                        <div class="opsi">Lorem, ipsum.</div>
-                                        <div class="opsi-jumlah"><span>65</span> suara</div>
-                                    </div>
-                                    <div class="persen-opsi">
-                                        <div class="batang" style="width: 65%;" ></div>
-                                    </div>
-                                </div>
+                                        $queryoption="SELECT * FROM opsi WHERE id_pertanyaan='$id_pertanyaan'";
+                                        $resultoption=mysqli_query($conn,$queryoption);
+                                        while($rowoption=mysqli_fetch_array($resultoption)){
+                                            $id_opsi=$rowoption['id_opsi'];
+                                            $queryjawaban="SELECT * FROM jawaban WHERE jawaban='$id_opsi'";
+                                            $resultjawaban=mysqli_query($conn,$queryjawaban);
+                                            $countopsi=mysqli_num_rows($resultjawaban);
+                                            ?>
+                                                <div class="grup-opsi">
+                                                    <div class="label-opsi">
+                                                        <div class="opsi"><?php echo $rowoption['opsi']?></div>
+                                                        <div class="opsi-jumlah"><span><?php echo $countopsi ?></span> suara</div>
+                                                    </div>
+                                                    <div class="persen-opsi">
+                                                        <div class="batang" style="width: 15%;" ></div>
+                                                    </div>
+                                                </div>
+                                            <?php
+                                        }
+                                    ?>     
                             </div>
-                        </div>
+                            </div>           
                     <?php
                 }
 
             ?>
-            <div class="laporan">
-                <div class="laporan-pertanyaan">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae facilis, a corporis expedita sapiente sit. Laboriosam illum perspiciatis aperiam, quis fugiat veniam. Nemo fugiat repellat consectetur veritatis molestias id, sequi minima ipsum, illum earum rerum saepe quod, sunt voluptates quaerat?</div>
-                <div class="laporan-opsi">
-                    <div class="grup-opsi">
-                        <div class="label-opsi">
-                            <div class="opsi">Lorem, ipsum.</div>
-                            <div class="opsi-jumlah"><span>85</span> suara</div>
-                        </div>
-                        <div class="persen-opsi">
-                            <div class="batang" style="width: 85%;" ></div>
-                        </div>
-                    </div>
-                    <div class="grup-opsi">
-                        <div class="label-opsi">
-                            <div class="opsi">Lorem, ipsum.</div>
-                            <div class="opsi-jumlah"><span>15</span> suara</div>
-                        </div>
-                        <div class="persen-opsi">
-                            <div class="batang" style="width: 15%;" ></div>
-                        </div>
-                    </div>
-                    <div class="grup-opsi">
-                        <div class="label-opsi">
-                            <div class="opsi">Lorem, ipsum.</div>
-                            <div class="opsi-jumlah"><span>24</span> suara</div>
-                        </div>
-                        <div class="persen-opsi">
-                            <div class="batang" style="width: 24%;" ></div>
-                        </div>
-                    </div>
-                    <div class="grup-opsi">
-                        <div class="label-opsi">
-                            <div class="opsi">Lorem, ipsum.</div>
-                            <div class="opsi-jumlah"><span>65</span> suara</div>
-                        </div>
-                        <div class="persen-opsi">
-                            <div class="batang" style="width: 65%;" ></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="laporan">
-                <div class="laporan-pertanyaan">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae facilis, a corporis expedita sapiente sit. Laboriosam illum perspiciatis aperiam, quis fugiat veniam. Nemo fugiat repellat consectetur veritatis molestias id, sequi minima ipsum, illum earum rerum saepe quod, sunt voluptates quaerat?</div>
-                <div class="laporan-opsi">
-                    <div class="grup-opsi">
-                        <div class="label-opsi">
-                            <div class="opsi">Lorem, ipsum.</div>
-                            <div class="opsi-jumlah"><span>85</span> suara</div>
-                        </div>
-                        <div class="persen-opsi">
-                            <div class="batang" style="width: 85%;" ></div>
-                        </div>
-                    </div>
-                    <div class="grup-opsi">
-                        <div class="label-opsi">
-                            <div class="opsi">Lorem, ipsum.</div>
-                            <div class="opsi-jumlah"><span>15</span> suara</div>
-                        </div>
-                        <div class="persen-opsi">
-                            <div class="batang" style="width: 15%;" ></div>
-                        </div>
-                    </div>
-                    <div class="grup-opsi">
-                        <div class="label-opsi">
-                            <div class="opsi">Lorem, ipsum.</div>
-                            <div class="opsi-jumlah"><span>24</span> suara</div>
-                        </div>
-                        <div class="persen-opsi">
-                            <div class="batang" style="width: 24%;" ></div>
-                        </div>
-                    </div>
-                    <div class="grup-opsi">
-                        <div class="label-opsi">
-                            <div class="opsi">Lorem, ipsum.</div>
-                            <div class="opsi-jumlah"><span>65</span> suara</div>
-                        </div>
-                        <div class="persen-opsi">
-                            <div class="batang" style="width: 65%;" ></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        </div>    
 </body>
 </html>
