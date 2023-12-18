@@ -3,6 +3,14 @@
     session_start();
 
     $id=$_GET['id'];
+    
+    $querycek="SELECT * FROM pertanyaan WHERE id_survei='$id'";
+    $resultcek=mysqli_query($conn,$querycek);
+    $rowcek=mysqli_fetch_array($resultcek);
+    if($rowcek){
+        header('Location:index.php');
+    }
+
     $nomor = 1;
     $countquest=1;
     $countoption=1;
@@ -39,8 +47,8 @@
         }
 
         $tempoption='pertanyaan' . $countquest . '_opsi' . $countoption;
-        while($_POST[$tempoption]!=0){
-            while($_POST[$tempoption]!=0){
+        while(isset($_POST[$tempoption])){
+            while(isset($_POST[$tempoption])){
                 $option=$_POST[$tempoption];
                 $idcount=$countquest-1;
                 $queryop="INSERT INTO opsi(opsi,id_pertanyaan) VALUES('$option','$id_pertanyaan[$idcount]')";
@@ -48,6 +56,7 @@
                 if ($resultop) {
                     $countoption++;
                     $tempoption='pertanyaan' . $countquest . '_opsi' . $countoption;
+                    echo $tempoption;
                 } else {
                     echo "Error: " . mysqli_error($conn);
                 }
@@ -229,7 +238,7 @@
         var newOptionInput = document.createElement('div');
         newOptionInput.className = 'option';
         // Menambahkan questionCount dan optionCount ke dalam nama input
-        newOptionInput.innerHTML = '<input type="text" name="question' + questionNumber + '_option' + optionCount + '" placeholder="Opsi ' + optionCount + ' ...">';
+        newOptionInput.innerHTML = '<input type="text" name="pertanyaan' + questionNumber + '_opsi' + optionCount + '" placeholder="Opsi ' + optionCount + ' ...">';
         newOptionWrap.appendChild(newOptionInput);
 
         optionContainer.insertBefore(newOptionWrap, document.querySelector('.question-container:nth-child(' + questionNumber + ') .option-add'));
