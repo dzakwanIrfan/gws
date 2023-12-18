@@ -98,6 +98,16 @@
     $query="SELECT survei.*, pengguna.* FROM survei JOIN pengguna ON survei.id_pengguna=pengguna.id_pengguna ORDER BY id_survei ASC LIMIT $awalData, $jumlahDataPerHalaman";
     $result=mysqli_query($conn,$query);
 
+    //search
+    if(isset($_POST['cari'])){
+        $keyword=$_POST['keyword'];
+        $query="SELECT survei.*, pengguna.* FROM survei JOIN pengguna ON survei.id_pengguna=pengguna.id_pengguna WHERE 
+        judul_survei LIKE '%$keyword%' OR
+        deskripsi_survei LIKE '%$keyword%' OR
+        namaUser_pengguna LIKE '%$keyword%' 
+        ";
+        $result=mysqli_query($conn,$query);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -114,25 +124,14 @@
     <div class="container">
         <div class="heading">
             <div class="search">
-                <form action="">
-                    <table>
-                        <tr>
-                            <form action="" method="post">
-                                <td><input type="text" name="telusuri" placeholder="Telusuri"></td>
-                                <td><button type="submit" name="search"><ion-icon name="search-outline"></ion-icon></button></td>
-                            </form>
-                        </tr>
-                    </table>
-                </form>
-            </div>
-            <div class="sort">
-                <div class="sort-select" onclick="toggleDropdown()">
-                    <span class="sort-span">Urutkan berdasarkan</span> <ion-icon name="chevron-down-outline"></ion-icon>
-                    <div class="dropdown-content">
-                        <a href="#">Waktu buat</a>
-                        <a href="#">Pendukung naik</a>
-                    </div>
-                </div>
+                <table>
+                    <tr>
+                        <form action="" method="post">
+                            <td><input type="text" name="keyword" placeholder="Telusuri" autocomplete="off"></td>
+                            <td><button type="submit" name="cari"><ion-icon name="search-outline"></ion-icon></button></td>
+                        </form>
+                    </tr>
+                </table>
             </div>
         </div>
         <?php 
@@ -174,6 +173,9 @@
                 <?php
             }
         ?>
+        <?php
+            if(!isset($_POST['cari'])){
+        ?>
         <div class="pages">
             <!-- Pagination -->
             <?php if ($halamanAktif > 1) : ?>
@@ -190,16 +192,13 @@
 
             <?php if ($halamanAktif < $jumlahHalaman) : ?>
                 <a href="?halaman=<?= $halamanAktif + 1 ?>" class="page-right">&gt;</a> <!-- &raquo; right arrow -->
-        <?php endif; ?>
+            <?php endif; ?>
         </div>
+        <?php
+            }
+        ?>
     </div>
 
-<script>
-    function toggleDropdown() {
-    var dropdown = document.querySelector(".dropdown-content");
-    dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
-}
-</script>
 <script>
     function toggleVote(element) {
         element.classList.toggle('active');
