@@ -3,10 +3,36 @@
     session_start();
 
     $id=$_GET['id'];
+    $nomor = 1;
+    $question=array();
+    $cek=false;
+    $id_pertanyaan=array();
+    
 
     $query="SELECT judul_survei, deskripsi_survei FROM survei WHERE id_survei='$id'";
     $result=mysqli_query($conn,$query);
     $row=mysqli_fetch_array($result);
+
+    if(isset($_POST['submit'])){
+        $temp = 'pertanyaan' .$nomor;
+        while(isset($_POST[$temp])){
+            $question[$nomor]=$_POST[$temp];
+            if ($question != null) {
+                $query = "INSERT INTO pertanyaan(pertanyaan, id_survei) VALUES('$question[$nomor]', $id)";
+                $result = mysqli_query($conn, $query);
+            
+                if ($result) {
+                    $nomor++;
+                } else {
+                    echo "Error: " . mysqli_error($conn);
+                }
+                $temp = 'pertanyaan' .$nomor;
+                $question[$nomor] =$_POST[$temp];
+           }
+        }
+
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -23,20 +49,20 @@
     <div class="container">
         <div class="title"><?php echo $row['judul_survei']; ?></div>
         <p><?php echo $row['deskripsi_survei'] ?></p>
-        <form action="">
+        <form action="" method="post">
         <div class="question-container">
             <ion-icon name="close-circle-outline" class="delete-question" onclick="deleteQuestion(1)"></ion-icon>
             <div class="question">
                 <label for="1">Pertanyaan <span>1</span></label><br>
-                <textarea name="1" id="1" placeholder="Pertanyaan 1 ..."></textarea>
+                <textarea name="pertanyaan1" id="1" placeholder="Pertanyaan 1 ..."></textarea>
                 <div class="option-container">
                     <div class="option-wrap">
                         <ion-icon name="close-circle-outline" class="delete-option" onclick="deleteOption(1, 1)"></ion-icon>
-                        <div class="option"><input type="text" placeholder="Opsi 1 ..."></div>
+                        <div class="option"><input type="text" name="pertanyaan1_opsi1" placeholder="Opsi 1 ..."></div>
                     </div>
                     <div class="option-wrap">
                         <ion-icon name="close-circle-outline" class="delete-option" onclick="deleteOption(1, 2)"></ion-icon>
-                        <div class="option"><input type="text" placeholder="Opsi 2 ..."></div>
+                        <div class="option"><input type="text" name="pertanyaan1_opsi2" placeholder="Opsi 2 ..."></div>
                     </div>
                     <div class="option-add" onclick="addOption(1)">
                         <ion-icon name="add-circle-outline" class="add-option"></ion-icon>
@@ -46,7 +72,7 @@
             </div>
         </div>
         <ion-icon name="add-circle" class="add-question" onclick="addQuestion()"></ion-icon>
-        <input type="submit" value="Buat Survei" class="submit">
+        <input type="submit" name="submit" value="Buat Survei" class="submit">
         </form>
     </div>
 </body>
@@ -109,43 +135,43 @@
 
 <script>
     function addQuestion() {
-        var questionContainer = document.querySelector('form');
-        var questionContainers = document.querySelectorAll('.question-container');
+    var questionContainer = document.querySelector('form');
+    var questionContainers = document.querySelectorAll('.question-container');
 
-        var questionCount = questionContainers.length + 1;
+    var questionCount = questionContainers.length + 1;
 
-        var newQuestionContainer = document.createElement('div');
-        newQuestionContainer.className = 'question-container';
+    var newQuestionContainer = document.createElement('div');
+    newQuestionContainer.className = 'question-container';
 
-        var deleteIcon = document.createElement('ion-icon');
-        deleteIcon.setAttribute('name', 'close-circle-outline');
-        deleteIcon.className = 'delete-question';
-        deleteIcon.onclick = function () {
-            deleteQuestion(questionCount);
-        };
-        newQuestionContainer.appendChild(deleteIcon);
+    var deleteIcon = document.createElement('ion-icon');
+    deleteIcon.setAttribute('name', 'close-circle-outline');
+    deleteIcon.className = 'delete-question';
+    deleteIcon.onclick = function () {
+        deleteQuestion(questionCount);
+    };
+    newQuestionContainer.appendChild(deleteIcon);
 
-        var newQuestion = document.createElement('div');
-        newQuestion.className = 'question';
-        newQuestion.innerHTML = '<label for="' + questionCount + '">Pertanyaan <span>' + questionCount + '</span></label><br>' +
-            '<textarea name="' + questionCount + '" id="' + questionCount + '" placeholder="Pertanyaan ' + questionCount + ' ..."></textarea>' +
-            '<div class="option-container">' +
-            '<div class="option-wrap">' +
-            '<ion-icon name="close-circle-outline" class="delete-option" onclick="deleteOption(' + questionCount + ', 1)"></ion-icon>' +
-            '<div class="option"><input type="text" placeholder="Opsi 1 ..."></div>' +
-            '</div>' +
-            '<div class="option-wrap">' +
-            '<ion-icon name="close-circle-outline" class="delete-option" onclick="deleteOption(' + questionCount + ', 2)"></ion-icon>' +
-            '<div class="option"><input type="text" placeholder="Opsi 2 ..."></div>' +
-            '</div>' +
-            '<div class="option-add" onclick="addOption(' + questionCount + ')">' +
-            '<ion-icon name="add-circle-outline" class="add-option"></ion-icon>' +
-            '<div class="add">Tambah opsi</div>' +
-            '</div>' +
-            '</div>';
-        newQuestionContainer.appendChild(newQuestion);
+    var newQuestion = document.createElement('div');
+    newQuestion.className = 'question';
+    newQuestion.innerHTML = '<label for="pertanyaan' + questionCount + '">Pertanyaan <span>' + questionCount + '</span></label><br>' +
+        '<textarea name="pertanyaan' + questionCount + '" id="pertanyaan' + questionCount + '" placeholder="Pertanyaan ' + questionCount + ' ..."></textarea>' +
+        '<div class="option-container">' +
+        '<div class="option-wrap">' +
+        '<ion-icon name="close-circle-outline" class="delete-option" onclick="deleteOption(' + questionCount + ', 1)"></ion-icon>' +
+        '<div class="option"><input type="text" name="pertanyaan'+ questionCount +'_opsi1" placeholder="Opsi 1 ..."></div>' +
+        '</div>' +
+        '<div class="option-wrap">' +
+        '<ion-icon name="close-circle-outline" class="delete-option" onclick="deleteOption(' + questionCount + ', 2)"></ion-icon>' +
+        '<div class="option"><input type="text" name="pertanyaan'+ questionCount +'_opsi2" placeholder="Opsi 2 ..."></div>' +
+        '</div>' +
+        '<div class="option-add" onclick="addOption(' + questionCount + ')">' +
+        '<ion-icon name="add-circle-outline" class="add-option"></ion-icon>' +
+        '<div class="add">Tambah opsi</div>' +
+        '</div>' +
+        '</div>';
+    newQuestionContainer.appendChild(newQuestion);
 
-        questionContainer.insertBefore(newQuestionContainer, document.querySelector('.add-question'));
+    questionContainer.insertBefore(newQuestionContainer, document.querySelector('.add-question'));
     }
 
     function deleteQuestion(questionNumber) {
@@ -175,7 +201,8 @@
 
         var newOptionInput = document.createElement('div');
         newOptionInput.className = 'option';
-        newOptionInput.innerHTML = '<input type="text" placeholder="Opsi ' + optionCount + ' ...">';
+        // Menambahkan questionCount dan optionCount ke dalam nama input
+        newOptionInput.innerHTML = '<input type="text" name="question' + questionNumber + '_option' + optionCount + '" placeholder="Opsi ' + optionCount + ' ...">';
         newOptionWrap.appendChild(newOptionInput);
 
         optionContainer.insertBefore(newOptionWrap, document.querySelector('.question-container:nth-child(' + questionNumber + ') .option-add'));
