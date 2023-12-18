@@ -58,6 +58,10 @@ td{
     color: #001524  ;
 }
 
+.icon{
+    font-size: 1.5rem;
+}
+
 /* admin */
 .container-admin{
     margin-left: 20%;

@@ -1,3 +1,17 @@
+<?php 
+    include ("conection.php");
+
+    $sql = "SELECT * FROM survei;";
+    $query = mysqli_query($conn, $sql);
+
+    if(isset($_GET['del'])){
+        $id = $_GET['del'];
+        $sql = "DELETE FROM survei WHERE id_survei = $id;";
+        $query_del = mysqli_query($conn, $sql);
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,19 +32,30 @@
                 <th>Pembuat</th>
                 <th>Aksi</th>
             </tr>
+            <?php while($row = mysqli_fetch_assoc($query)){ ?>
             <tr>
-                <td>Survei Elaktabilitas Ahok</td>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, consequatur ...</td>
-                <td class="survey"><img src="assets/images/gambar-survey.png" alt=""></td>
+                <td><?= $row['judul_survei'] ?></td>
+                <td><?= $row['deskripsi_survei'] ?></td>
+                <td class="survey"><img src="<?= $row['gambar_survei'] ?>" alt=""></td>
                 <td class="profile">
-                    <a href="profile.php">Dzakwan Irfan Ramdhani</a>
+                    <a href="profile.php?id=<?= $row['id_pengguna'] ?>">
+                        <?php
+                            $id_pengguna = $row['id_pengguna'];
+                            $sql_p = "SELECT * FROM pengguna WHERE id_pengguna = $id_pengguna;";
+                            $query_p = mysqli_query($conn, $sql_p); 
+                            while($result_p = mysqli_fetch_assoc($query_p)){ 
+                            echo $result_p['nama_pengguna']; 
+                            }
+                        ?>
+                    </a>
                 </td>
                 <td class="action">
-                    <a href="profile.php"><ion-icon name="eye-outline" style="background-color: blue; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
-                    <a href=""><ion-icon name="create-outline" style="background-color: yellow; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
-                    <a href=""><ion-icon name="trash-outline" style="background-color: red; padding: 4px; border-radius:4px"></ion-icon></a>
+                    <a href="survey.php?id=<?= $row['id_survei'] ?>"><ion-icon class="icon" name="eye-outline" style="color:white; background-color: blue; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
+                    <!-- <a href=""><ion-icon name="create-outline" style="background-color: yellow; padding: 4px; border-radius:4px"></ion-icon></a><br><br> -->
+                    <a href="dashboard-survey.php?del=<?= $row['id_survei'] ?>"><ion-icon class="icon" name="trash-outline" style="color:white; background-color: red; padding: 4px; border-radius:4px"></ion-icon></a>
                 </td>
             </tr>
+            <?php } ?>
         </table>
     </div>
     

@@ -1,3 +1,27 @@
+<?php
+    include("conection.php");
+    $id = $_GET['id'];
+
+    //survei
+    $sql = "SELECT * FROM survei WHERE id_survei = $id;";
+    $query = mysqli_query($conn, $sql);
+    $result = mysqli_fetch_assoc($query);
+
+    //user
+    $id_user = $result['id_pengguna'];
+    $sql_user = "SELECT * FROM pengguna WHERE id_pengguna = $id_user";
+    $query_user = mysqli_query($conn, $sql_user);
+    $result_user = mysqli_fetch_assoc($query_user);
+
+    //pertanyaan
+    $sql_q = "SELECT * FROM pertanyaan WHERE id_survei = $id;";
+    $query_q = mysqli_query($conn, $sql_q);
+
+    //opsi
+    
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,27 +35,32 @@
     <?php include("layouts/sidebar.php"); ?>
     <div class="container">
         <div class="profile">
-            <a href="profile.php"><img src="assets/images/profile-picture.png" alt="profile"></a>
+            <a href="profile.php?id=<?= $result_user['id_pengguna'] ?>"><img src="<?= $result_user['foto_pengguna'] ?>" alt="profile"></a>
             <div class="profile-desk">
-                <a href="profile.php"><div class="name">Nama Pengguna</div></a>
-                <a href="profile.php"><div class="date"><small>1 December 2023</small></div></a>
+                <a href="profile.php?id=<?= $result_user['id_pengguna'] ?>"><div class="name"><?= $result_user['nama_pengguna'] ?></div></a>
+                <a href="profile.php?id=<?= $result_user['id_pengguna'] ?>"><div class="date"><small><?= $result['waktu_survei'] ?></small></div></a>
             </div>
         </div>
-        <div class="title">Judul Survei</div>
-        <div class="desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel consectetur cumque dicta labore, blanditiis, tenetur quaerat maiores porro, minima voluptatem repellendus molestiae laboriosam. Est, at? ...</div>
-        <img src="assets/images//gambar-survey.png" alt="survei">
+        <div class="title"><?= $result['judul_survei'] ?></div>
+        <div class="desc"><?= $result['deskripsi_survei'] ?></div>
+        <img src="<?= $result['gambar_survei'] ?>" alt="survei">
         <form action="">
             <div class="question-container">
+                <?php while($result_q = mysqli_fetch_assoc($query_q)){ ?>
                 <div class="question-group">
-                    <div class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum sequi soluta fuga mollitia architecto odio dolorem eum doloremque ipsum corrupti?</div>
+                    <div class="question"><?= $result_q['pertanyaan'] ?></div>
                     <div class="option-group">
-                        <div class="option"><input type="radio" id="1" name="1"><label for="1">Option 1</label></div>
-                        <div class="option"><input type="radio" id="2" name="1"><label for="2">Option 2</label></div>
-                        <div class="option"><input type="radio" id="3" name="1"><label for="3">Option 3</label></div>
-                        <div class="option"><input type="radio" id="4" name="1"><label for="4">Option 4</label></div>
-                        <div class="option"><input type="radio" id="5" name="1"><label for="5">Option 5</label></div>
+                        <?php
+                            $id_pertanyaan = $result_q['id_pertanyaan'];
+                            $sql_o = "SELECT * FROM opsi WHERE id_pertanyaan = $id_pertanyaan;";
+                            $query_o = mysqli_query($conn, $sql_o); 
+                            while($result_o = mysqli_fetch_assoc($query_o)){ 
+                        ?>
+                        <div class="option"><input type="radio" id="<?= $result_o['id_opsi'] ?>" name="<?= $result_q['id_pertanyaan'] ?>" value="<?= $result_o['id_opsi'] ?>"><label for="<?= $result_o['id_opsi'] ?>"><?= $result_o['opsi'] ?></label></div>
+                        <?php } ?>
                     </div>
                 </div>
+                <?php } ?>
                 <input type="submit" value="Kirim Jawaban">
             </div>
         </form>

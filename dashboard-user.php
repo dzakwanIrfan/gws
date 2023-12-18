@@ -1,3 +1,16 @@
+<?php 
+    include ("conection.php");
+
+    $sql = "SELECT * FROM pengguna;";
+    $query = mysqli_query($conn, $sql);
+
+    if(isset($_GET['del'])){
+        $id = $_GET['del'];
+        $sql = "DELETE FROM pengguna WHERE id_pengguna = $id;";
+        $query_del = mysqli_query($conn, $sql);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,18 +32,20 @@
                 <th>Jenis kelamin</th>
                 <th>Aksi</th>
             </tr>
+            <?php while($row = mysqli_fetch_assoc($query)){ ?>
             <tr>
-                <td class="user"><img src="assets/images/profile-picture.png" alt="profile"></td>
-                <td>dzakonee</td>
-                <td>Dzakwan Irfan Ramdhani</td>
-                <td>dzakone07@gmail.com</td>
-                <td>Laki-laki</td>
+                <td class="user"><img src="<?= $row['foto_pengguna'] ?>" alt="profile"></td>
+                <td><?= $row['namaUser_pengguna'] ?></td>
+                <td><?= $row['nama_pengguna'] ?></td>
+                <td><?= $row['email_pengguna'] ?></td>
+                <td><?= $row['jenisKelamin_pengguna'] ?></td>
                 <td class="action">
-                    <a href="profile.php"><ion-icon name="eye-outline" style="background-color: blue; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
-                    <a href="update-profile.php"><ion-icon name="create-outline" style="background-color: yellow; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
-                    <a href=""><ion-icon name="trash-outline" style="background-color: red; padding: 4px; border-radius:4px"></ion-icon></a>
+                    <a href="profile.php?id=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="eye-outline" style="color: white; background-color: blue; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
+                    <a href="update-profile.php?id=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="create-outline" style="background-color: yellow; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
+                    <a href="dashboard-user.php?del=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="trash-outline" style="color: white; background-color: red; padding: 4px; border-radius:4px"></ion-icon></a>
                 </td>
             </tr>
+            <?php } ?>
         </table>
     </div>
 </body>

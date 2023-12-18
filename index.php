@@ -146,7 +146,7 @@
                     <div class="content">
                         <div class="sub-content">
                             <div class="profile">
-                                <a href="profile.php"><img src="<?php 
+                                <a href="profile.php?id=<?= $row['id_pengguna'] ?>"><img src="<?php 
                                                                     if($row['foto_pengguna']!=''){
                                                                         echo $row['foto_pengguna'];
                                                                     }else{
@@ -154,11 +154,11 @@
                                                                     }
                                                                 ?>" alt="profile"></a>
                                 <div class="profile-desk">
-                                    <a href="profile.php"><div class="name"><?php echo $row['namaUser_pengguna']?></div></a>
-                                    <a href="profile.php"><div class="date"><small><?php echo $row['waktu_survei']?></small></div></a>
+                                    <a href="profile.php?id=<?= $row['id_pengguna'] ?>"><div class="name"><?php echo $row['namaUser_pengguna']?></div></a>
+                                    <a href="profile.php?id=<?= $row['id_pengguna'] ?>"><div class="date"><small><?php echo $row['waktu_survei']?></small></div></a>
                                 </div>
                             </div>
-                            <a href="survei.php?id=<?php echo $row['id_survei']?>">
+                            <a href="survey.php?id=<?php echo $row['id_survei']?>">
                                 <div class="title"><?php echo $row['judul_survei']?></div>
                                 <div class="desk"><?php echo $row['deskripsi_survei']?></div>
                                 <img src="<?php echo $row['gambar_survei']?>" class="banner" style="height: 10rem; width: 100%;">
