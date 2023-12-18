@@ -4,8 +4,9 @@
 
     $id=$_GET['id'];
     $nomor = 1;
+    $countquest=1;
+    $countoption=1;
     $question=array();
-    $cek=false;
     $id_pertanyaan=array();
     
 
@@ -15,13 +16,12 @@
 
     if(isset($_POST['submit'])){
         $temp = 'pertanyaan' .$nomor;
-        while(isset($_POST[$temp])){
+        while($_POST[$temp]){
             $question[$nomor]=$_POST[$temp];
             if ($question != null) {
                 $query = "INSERT INTO pertanyaan(pertanyaan, id_survei) VALUES('$question[$nomor]', $id)";
                 $result = mysqli_query($conn, $query);
                 
-                $queryselect="";
                 if ($result) {
                     $nomor++;
                 } else {
@@ -31,7 +31,33 @@
                 $question[$nomor] =$_POST[$temp];
            }
         }
+        
+        $queryselect="SELECT id_pertanyaan FROM pertanyaan where id_survei='$id' ORDER BY id_pertanyaan ASC";
+        $resultselect=mysqli_query($conn,$queryselect);
+        while($rowselect=mysqli_fetch_array($resultselect)){
+            $id_pertanyaan[]=$rowselect['id_pertanyaan'];
+        }
 
+        $tempoption='pertanyaan' . $countquest . '_opsi' . $countoption;
+        while($_POST[$tempoption]!=0){
+            while($_POST[$tempoption]!=0){
+                $option=$_POST[$tempoption];
+                $idcount=$countquest-1;
+                $queryop="INSERT INTO opsi(opsi,id_pertanyaan) VALUES('$option','$id_pertanyaan[$idcount]')";
+                $resultop=mysqli_query($conn,$queryop);
+                if ($resultop) {
+                    $countoption++;
+                    $tempoption='pertanyaan' . $countquest . '_opsi' . $countoption;
+                } else {
+                    echo "Error: " . mysqli_error($conn);
+                }
+
+            }
+            $countoption=1;
+            $countquest++;
+            $tempoption='pertanyaan' . $countquest . '_opsi' . $countoption;
+        }
+        header('Location:index.php');
     }
     
 ?>
