@@ -7,9 +7,7 @@
         $row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM pengguna WHERE id_pengguna=$id_p;"));
     
         if($_SESSION['id_pengguna'] != $id_p){
-            if($_SESSION['role_pengguna'] == 'pemilik' || $_SESSION['role_pengguna'] == 'admin'){
-                echo "<script>document.location = 'update-profile.php?id=$id_p';</script>";
-            }else{
+            if($_SESSION['role_pengguna'] != 'pemilik' || $_SESSION['role_pengguna'] != 'admin'){
                 echo "<script>document.location = 'profile.php?id=$id_p';</script>";
             }
         }
