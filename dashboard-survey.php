@@ -13,6 +13,7 @@
         $id = $_GET['del'];
         $sql = "DELETE FROM survei WHERE id_survei = $id;";
         $query_del = mysqli_query($conn, $sql);
+        header('Location: dashboard-survey.php');
     }
 ?>
 
@@ -56,13 +57,18 @@
                 </td>
                 <td class="action">
                     <a href="survey.php?id=<?= $row['id_survei'] ?>"><ion-icon class="icon" name="eye-outline" style="color:white; background-color: blue; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
-                    <!-- <a href=""><ion-icon name="create-outline" style="background-color: yellow; padding: 4px; border-radius:4px"></ion-icon></a><br><br> -->
-                    <a href="dashboard-survey.php?del=<?= $row['id_survei'] ?>"><ion-icon class="icon" name="trash-outline" style="color:white; background-color: red; padding: 4px; border-radius:4px"></ion-icon></a>
+                    <a href="#" onclick="confirmDelete(<?= $row['id_survei'] ?>)"><ion-icon class="icon" name="trash-outline" style="color:white; background-color: red; padding: 4px; border-radius:4px"></ion-icon></a>
                 </td>
             </tr>
             <?php } ?>
         </table>
     </div>
-    
+    <script>
+    function confirmDelete(id) {
+        if (confirm('Anda yakin untuk delete survei ini?')) {
+            window.location.href = 'dashboard-survey.php?del=' + id;
+        }
+    }
+</script>
 </body>
 </html>

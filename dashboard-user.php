@@ -13,6 +13,7 @@
         $id = $_GET['del'];
         $sql = "DELETE FROM pengguna WHERE id_pengguna = $id;";
         $query_del = mysqli_query($conn, $sql);
+        header('Location: dashboard-user.php');
     }
 ?>
 
@@ -47,11 +48,18 @@
                 <td class="action">
                     <a href="profile.php?id=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="eye-outline" style="color: white; background-color: #4E639A; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
                     <a href="update-profile.php?id=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="create-outline" style="background-color: #D6DA15; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
-                    <a href="dashboard-user.php?del=<?= $row['id_pengguna'] ?>"><ion-icon class="icon" name="trash-outline" style="color: white; background-color: #9F2727; padding: 4px; border-radius:4px"></ion-icon></a>
+                    <a href="#" onclick="confirmDelete(<?= $row['id_pengguna'] ?>)"><ion-icon class="icon" name="trash-outline" style="color: white; background-color: #9F2727; padding: 4px; border-radius:4px"></ion-icon></a>
                 </td>
             </tr>
             <?php } ?>
         </table>
     </div>
+<script>
+    function confirmDelete(id) {
+        if (confirm('Anda yakin untuk delete pengguna ini?')) {
+            window.location.href = 'dashboard-user.php?del=' + id;
+        }
+    }
+</script>
 </body>
 </html>
