@@ -40,7 +40,15 @@
             </tr>
             <?php while($row = mysqli_fetch_assoc($query)){ ?>
             <tr>
-                <td class="user"><img src="<?= $row['foto_pengguna'] ?>" alt="profile"></td>
+                <td>
+                    <img class="user" src="<?php 
+                        if($row['foto_pengguna']!=''){
+                            echo $row['foto_pengguna'];
+                        }else{
+                            echo "assets/images/profile-picture.png";                     
+                        }
+                    ?>" alt="profile">
+                </td>
                 <td><?= $row['namaUser_pengguna'] ?></td>
                 <td><?= $row['nama_pengguna'] ?></td>
                 <td><?= $row['email_pengguna'] ?></td>
