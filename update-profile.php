@@ -7,7 +7,7 @@
         $row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM pengguna WHERE id_pengguna=$id_p;"));
     
         if($_SESSION['id_pengguna'] != $id_p){
-            if($_SESSION['role_pengguna'] != 'pemilik' || $_SESSION['role_pengguna'] != 'admin'){
+            if($_SESSION['role_pengguna'] != 'pemilik' && $_SESSION['role_pengguna'] != 'admin'){
                 echo "<script>document.location = 'profile.php?id=$id_p';</script>";
             }
         }
@@ -87,14 +87,18 @@
                     <label for="email">Email</label>
                     <input type="text" id="email" placeholder="Masukan Email Anda.." value="<?= $row['email_pengguna'] ?>" name="email">
                 </div>
-                <div class="input-group">
-                    <label for="jenis-kelamin">Jenis-kelamin</label>
-                    <select name="kelamin" id="jenis-kelamin" style="color: rgba(0, 0, 0, 0.5);">
-                        <option disabled selected >Masukan Kelamin Anda..</option>
-                        <option value="laki-laki" <?php if($row['jenisKelamin_pengguna'] == "laki-laki"){ echo "selected"; } ?>>Laki-laki</option>
-                        <option value="perempuan" <?php if($row['jenisKelamin_pengguna'] == "perempuan"){ echo "selected"; } ?>>Perempuan</option>
-                    </select>
-                </div>
+                <?php if($row['jenisKelamin_pengguna']){ ?>
+                
+                <?php } else { ?>
+                    <div class="input-group">
+                        <label for="jenis-kelamin">Jenis-kelamin</label>
+                        <select name="kelamin" id="jenis-kelamin" style="color: rgba(0, 0, 0, 0.5);">
+                            <option disabled selected >Masukan Kelamin Anda..</option>
+                            <option value="laki-laki" <?php if($row['jenisKelamin_pengguna'] == "laki-laki"){ echo "selected"; } ?>>Laki-laki</option>
+                            <option value="perempuan" <?php if($row['jenisKelamin_pengguna'] == "perempuan"){ echo "selected"; } ?>>Perempuan</option>
+                        </select>
+                    </div>
+                <?php } ?>
                 <div class="submit-group">
                     <a href="profile.php" class="batal">Batal</a>
                     <input type="submit" value="Ubah" class="submit" name="ubah">
