@@ -114,6 +114,8 @@
                   </div>";
         }
     }
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -164,16 +166,37 @@
                                 <img src="<?php echo $row['gambar_survei']?>" class="banner" style="height: 10rem; width: 100%;">
                             </a>
                             <div class="action">
+                                <?php 
+                                    $idsurvei = $row['id_survei'];
+                                    $sqlmem = "SELECT * FROM `memilih` WHERE id_pengguna = $id AND id_survei = $idsurvei;";
+                                    $querymem = mysqli_query($conn, $sqlmem);
+                                    $resultmem = mysqli_fetch_assoc($querymem);
+
+                                    // Check if there are results
+                                    if ($resultmem) {
+                                ?>
                                 <div class="votes">
-                                    <a href="?voteup=<?php echo $row['id_survei'] ?>" class="up center" onclick="toggleVote(this)">
+                                    <a href="?voteup=<?php echo $row['id_survei'] ?>" class="up center <?php if($resultmem['naik'] == 1){ echo 'active'; } ?>" onclick="toggleVote(this)">
                                         <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> 
                                         <span>Dukung naik</span>
                                     </a>
-                                    <a href="?votedown=<?php echo $row['id_survei'] ?>" class="down center" onclick="toggleVote(this)">
+                                    <a href="?votedown=<?php echo $row['id_survei'] ?>" class="down center <?php if($resultmem['turun'] == 1){ echo 'active'; } ?>" onclick="toggleVote(this)">
                                         <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> 
                                         <span>Dukung turun</span>
                                     </a>
                                 </div>
+                                <?php } else { ?>
+                                <div class="votes">
+                                    <a href="?voteup=<?php echo $row['id_survei'] ?>" class="up center <?php if($resultmem['naik'] == 1){ echo 'active'; } ?>" onclick="toggleVote(this)">
+                                        <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> 
+                                        <span>Dukung naik</span>
+                                    </a>
+                                    <a href="?votedown=<?php echo $row['id_survei'] ?>" class="down center <?php if($resultmem['turun'] == 1){ echo 'active'; } ?>" onclick="toggleVote(this)">
+                                        <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> 
+                                        <span>Dukung turun</span>
+                                    </a>
+                                </div>
+                                <?php } ?>
                                 <button class="share center" onclick="toggleShare(this)"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></button>
                             </div>
                         </div>

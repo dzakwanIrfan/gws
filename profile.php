@@ -1,7 +1,7 @@
 <?php
     include("conection.php");
     session_start();
-    if($_GET['id']){
+    if($_GET['id'] != ''){
         $id = $_GET['id'];
     }else{
         $id = $_SESSION['id_pengguna'];
@@ -38,7 +38,11 @@
                 <div class="isi-biodata"><?= $row['email_pengguna'] ?></div>
                 <div class="isi-biodata"><?= $row['jenisKelamin_pengguna'] ?></div>
             </div>
-            <div class="ubah-bio"><a href="update-profile.php?id=<?= $row['id_pengguna'] ?>">Ubah</a></div>
+            <?php if ($_SESSION['role_pengguna'] == 'admin' || $_SESSION['role_pengguna'] == 'pemilik' || $_SESSION['id_pengguna'] == $row['id_pengguna']) { ?>
+                <div class="ubah-bio"><a href="update-profile.php?id=<?= $row['id_pengguna'] ?>">Ubah</a></div>
+            <?php } else { ?>
+                <!-- tidak ada -->
+            <?php } ?>
         </div>
         <div class="container-riwayat">
             <div class="riwayat-judul">Riwayat Pembuatan Survey</div>

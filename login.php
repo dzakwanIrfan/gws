@@ -22,22 +22,26 @@
                 if($row['role_pengguna'] == 'admin'){
                     $_SESSION['username']=$row['namaUser_pengguna'];
                     $_SESSION['id_pengguna']=$row['id_pengguna'];
-                    header("Location: admin/index.php");
+                    $_SESSION['role_pengguna']=$row['role_pengguna'];
+                    header("Location: dashboard-user.php");
                     exit;
                 } else if($row['role_pengguna'] == 'pemilik'){
                     $_SESSION['username']=$row['namaUser_pengguna'];
                     $_SESSION['id_pengguna']=$row['id_pengguna'];
-                    header("Location: pemilik/index.php");
+                    $_SESSION['role_pengguna']=$row['role_pengguna'];
+                    header("Location: index.php");
                     exit;
                 } else if($row['role_pengguna'] == 'penyurvei'){
                     $_SESSION['username']=$row['namaUser_pengguna'];
                     $_SESSION['id_pengguna']=$row['id_pengguna'];
+                    $_SESSION['role_pengguna']=$row['role_pengguna'];
                     header("Location: index.php");
                     exit;
                 } else if($row['role_pengguna'] == 'responden'){
                     $_SESSION['username']=$row['namaUser_pengguna'];
                     $_SESSION['id_pengguna']=$row['id_pengguna'];
-                    header("Location: responden/index.php");
+                    $_SESSION['role_pengguna']=$row['role_pengguna'];
+                    header("Location: index.php");
                     exit;
                 }
             }else{

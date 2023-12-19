@@ -8,6 +8,15 @@
     $query="SELECT * FROM survei WHERE id_survei='$id'";
     $result=mysqli_query($conn,$query);
     $row=mysqli_fetch_array($result);
+
+    //query memilih survei
+    $querymemnaik = "SELECT * FROM memilih WHERE id_survei = $id AND naik = 1;";
+    $resultmemnaik = mysqli_query($conn, $querymemnaik);
+    $naik = mysqli_num_rows($resultmemnaik);
+
+    $querymemturun = "SELECT * FROM memilih WHERE id_survei = $id AND turun = 1;";
+    $resultmemturun = mysqli_query($conn, $querymemturun);
+    $turun = mysqli_num_rows($resultmemturun);
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +34,16 @@
         <div class="header">
             <div class="judul"><?php echo $row['judul_survei'] ?></div>
             <div class="deskripsi"><?php echo $row['deskripsi_survei'] ?></div>
+            <div class="votes">
+                <div class="up active center">
+                    <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> 
+                    <span>Dukung naik: <?= $naik ?></span>
+                </div>
+                <div class="down active center">
+                    <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> 
+                    <span>Dukung turun: <?= $turun ?></span>
+                </div>
+            </div>
         </div>
 
         <div class="laporan-container">
@@ -46,6 +65,10 @@
                                             $queryjawaban="SELECT * FROM jawaban WHERE jawaban='$id_opsi'";
                                             $resultjawaban=mysqli_query($conn,$queryjawaban);
                                             $countopsi=mysqli_num_rows($resultjawaban);
+
+                                            $querypert = "SELECT * FROM jawaban WHERE id_pertanyaan = $id_pertanyaan;";
+                                            $resultpert = mysqli_query($conn, $querypert);
+                                            $countpert = mysqli_num_rows($resultpert);
                                             ?>
                                                 <div class="grup-opsi">
                                                     <div class="label-opsi">
@@ -53,7 +76,7 @@
                                                         <div class="opsi-jumlah"><span><?php echo $countopsi ?></span> suara</div>
                                                     </div>
                                                     <div class="persen-opsi">
-                                                        <div class="batang" style="width: 15%;" ></div>
+                                                        <div class="batang" style="width: <?= ($countopsi/$countpert) * 100?>%;" ></div>
                                                     </div>
                                                 </div>
                                             <?php

@@ -71,3 +71,51 @@ body{
     padding: 1rem 0;
     background-color: #445D48;
 }
+
+.votes{
+    display: flex;
+    gap: 1rem;
+}
+
+.votes div{
+    display: flex;
+}
+
+.center{
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    border: 2px solid #001524;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.icon {
+    font-size: 25px;
+}
+
+.up:hover{
+    background-color: #445D48;
+    border-color: transparent;
+    color: white;
+}
+
+.down:hover{
+    background-color: #9F2727;
+    border-color: transparent;
+    color: white;
+}
+
+.up.active {
+    background-color: #445D48;
+    border-color: transparent;
+    color: white;
+}
+
+.down.active {
+    background-color: #9F2727;
+    border-color: transparent;
+    color: white;
+}

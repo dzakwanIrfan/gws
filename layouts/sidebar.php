@@ -103,6 +103,16 @@
             <ion-icon name="person-outline"></ion-icon>
             <span class="tooltiptext">Profil</span>
         </a> 
+
+        <?php if ($_SESSION['role_pengguna'] == 'admin' || $_SESSION['role_pengguna'] == 'pemilik') { ?>
+                <a href="dashboard-user.php" class="tooltip">
+                    <ion-icon name="file-tray-stacked-outline"></ion-icon>
+                    <span class="tooltiptext">Kelola</span>
+                </a>
+        <?php } else { ?>
+            <!-- tidak ada -->
+        <?php } ?>
+
         <a href="logout.php" class="logout tooltip">
             <ion-icon name="log-out-outline"></ion-icon>
             <span class="tooltiptext logout-tooltip">Keluar</span>

@@ -2,6 +2,8 @@
     date_default_timezone_set('Asia/Jakarta');
     include("conection.php");
     session_start();
+
+    $idsaya = $_SESSION['id_pengguna'];
     
     if($_GET['id']){
         $id = $_GET['id'];
@@ -58,6 +60,82 @@
             }
         }
     }
+    //voting
+    if(isset($_GET['voteup'])){
+        $vote=$_GET['voteup'];
+        $querymemilih="SELECT * FROM memilih where id_pengguna = '$idsaya' && id_survei='$vote'";
+        $resultmemilih=mysqli_query($conn,$querymemilih);
+        $rowmemilih=mysqli_fetch_array($resultmemilih);
+
+        if(!$rowmemilih){
+            $queryselect="SELECT naik_survei FROM survei WHERE id_survei='$vote'";
+            $resultvote=mysqli_query($conn,$queryselect);
+            $rowvote=mysqli_fetch_array($resultvote);
+            $naik=$rowvote['naik_survei']+1;
+            $queryupdate="UPDATE survei SET naik_survei='$naik' where id_survei='$vote'";
+            $resulupdate=mysqli_query($conn,$queryupdate);
+            $queryinsert="INSERT INTO memilih(id_pengguna, id_survei, naik, turun) VALUES($idsaya,$vote,'1', '0')";
+            $resultinsert=mysqli_query($conn,$queryinsert);
+        }else{
+            if($rowmemilih['naik']==1){
+                $queryselect="SELECT naik_survei FROM survei WHERE id_survei='$vote'";
+                $resultvote=mysqli_query($conn,$queryselect);
+                $rowvote=mysqli_fetch_array($resultvote);
+                $naik=$rowvote['naik_survei']-1;
+                $queryupdate="UPDATE survei SET naik_survei='$naik' where id_survei='$vote'";
+                $resulupdate=mysqli_query($conn,$queryupdate);    
+                $queryinsert="UPDATE memilih SET naik='0' WHERE id_survei='$vote' && id_pengguna = '$idsaya'";
+                $resultinsert=mysqli_query($conn,$queryinsert);
+            }else{
+                $queryselect="SELECT naik_survei FROM survei WHERE id_survei='$vote'";
+                $resultvote=mysqli_query($conn,$queryselect);
+                $rowvote=mysqli_fetch_array($resultvote);
+                $naik=$rowvote['naik_survei']+1;
+                $queryupdate="UPDATE survei SET naik_survei='$naik' where id_survei='$vote'";
+                $resulupdate=mysqli_query($conn,$queryupdate);
+                $queryinsert="UPDATE memilih SET naik='1' WHERE id_survei='$vote' && id_pengguna = '$idsaya'";
+                $resultinsert=mysqli_query($conn,$queryinsert);
+            }
+        }
+    }
+
+    if(isset($_GET['votedown'])){
+        $vote=$_GET['votedown'];
+        $querymemilih="SELECT * FROM memilih where id_pengguna = '$idsaya' && id_survei='$vote'";
+        $resultmemilih=mysqli_query($conn,$querymemilih);
+        $rowmemilih=mysqli_fetch_array($resultmemilih);
+
+        if(!$rowmemilih){
+            $queryselect="SELECT turun_survei FROM survei WHERE id_survei='$vote'";
+            $resultvote=mysqli_query($conn,$queryselect);
+            $rowvote=mysqli_fetch_array($resultvote);
+            $naik=$rowvote['turun_survei']+1;
+            $queryupdate="UPDATE survei SET turun_survei='$naik' where id_survei='$vote'";
+            $resulupdate=mysqli_query($conn,$queryupdate);
+            $queryinsert="INSERT INTO memilih(id_pengguna, id_survei, naik, turun) VALUES($idsaya,$vote,'0', '1')";
+            $resultinsert=mysqli_query($conn,$queryinsert);
+        }else{
+            if($rowmemilih['turun']==1){
+                $queryselect="SELECT turun_survei FROM survei WHERE id_survei='$vote'";
+                $resultvote=mysqli_query($conn,$queryselect);
+                $rowvote=mysqli_fetch_array($resultvote);
+                $naik=$rowvote['turun_survei']-1;
+                $queryupdate="UPDATE survei SET turun_survei='$naik' where id_survei='$vote'";
+                $resulupdate=mysqli_query($conn,$queryupdate);    
+                $queryinsert="UPDATE memilih SET turun='0' WHERE id_survei='$vote' && id_pengguna = '$idsaya'";
+                $resultinsert=mysqli_query($conn,$queryinsert);
+            }else{
+                $queryselect="SELECT turun_survei FROM survei WHERE id_survei='$vote'";
+                $resultvote=mysqli_query($conn,$queryselect);
+                $rowvote=mysqli_fetch_array($resultvote);
+                $naik=$rowvote['turun_survei']+1;
+                $queryupdate="UPDATE survei SET turun_survei='$naik' where id_survei='$vote'";
+                $resulupdate=mysqli_query($conn,$queryupdate);
+                $queryinsert="UPDATE memilih SET turun='1' WHERE id_survei='$vote' && id_pengguna = '$idsaya'";
+                $resultinsert=mysqli_query($conn,$queryinsert);
+            }
+        }
+    }
     
 ?>
 
@@ -104,16 +182,37 @@
             </div>
         </form>
         <div class="action">
-            <div class="votes">
-                <a href="?voteup=<?php echo $row['id_survei'] ?>" class="up center" onclick="toggleVote(this)">
-                    <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> 
-                    <span>Dukung naik</span>
-                </a>
-                <a href="?votedown=<?php echo $row['id_survei'] ?>" class="down center" onclick="toggleVote(this)">
-                    <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> 
-                    <span>Dukung turun</span>
-                </a>
-            </div>
+        <?php 
+            $idsurvei = $result['id_survei'];
+            $sqlmem = "SELECT * FROM `memilih` WHERE id_pengguna = $idsaya AND id_survei = $idsurvei;";
+            $querymem = mysqli_query($conn, $sqlmem);
+            $resultmem = mysqli_fetch_assoc($querymem);
+
+            // Check if there are results
+            if ($resultmem) {
+        ?>
+        <div class="votes">
+            <a href="?voteup=<?php echo $result['id_survei']; ?>&id=<?php echo $result['id_survei']; ?>" class="up center <?php if($resultmem['naik'] == 1){ echo 'active'; } ?>" onclick="toggleVote(this)">
+                <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> 
+                <span>Dukung naik</span>
+            </a>
+            <a href="?votedown=<?php echo $result['id_survei']; ?>&id=<?php echo $result['id_survei']; ?>" class="down center <?php if($resultmem['turun'] == 1){ echo 'active'; } ?>" onclick="toggleVote(this)">
+                <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> 
+                <span>Dukung turun</span>
+            </a>
+        </div>
+        <?php } else { ?>
+        <div class="votes">
+            <a href="?voteup=<?php echo $result['id_survei']; ?>&id=<?php echo $result['id_survei']; ?>" class="up center <?php if($resultmem['naik'] == 1){ echo 'active'; } ?>" onclick="toggleVote(this)">
+                <ion-icon name="arrow-up-circle-outline" class="icon"></ion-icon> 
+                <span>Dukung naik</span>
+            </a>
+            <a href="?votedown=<?php echo $result['id_survei']; ?>&id=<?php echo $result['id_survei']; ?>" class="down center <?php if($resultmem['turun'] == 1){ echo 'active'; } ?>" onclick="toggleVote(this)">
+                <ion-icon name="arrow-down-circle-outline" class="icon"></ion-icon> 
+                <span>Dukung turun</span>
+            </a>
+        </div>
+        <?php } ?>
             <button class="share center" onclick="toggleShare(this)"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></button>
         </div>
     </div>

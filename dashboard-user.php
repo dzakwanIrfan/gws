@@ -1,5 +1,10 @@
 <?php 
     include ("conection.php");
+    session_start();
+    
+    if($_SESSION['role_pengguna'] != 'pemilik' && $_SESSION['role_pengguna'] != 'admin'){
+        echo "<script>alert('Dilarang memasuki halaman ini!'); document.location = 'index.php';</script>";
+    }
 
     $sql = "SELECT * FROM pengguna;";
     $query = mysqli_query($conn, $sql);
