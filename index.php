@@ -162,6 +162,7 @@
     <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
+    
     <?php include("layouts/sidebar.php"); ?>
     <div class="container">
         <div class="heading">
@@ -219,6 +220,15 @@
                                         <span>Dukung turun</span>
                                     </a>
                                 </div>
+                                <div id="myModal" class="modal">
+                                    <div class="modal-content">
+                                        <span class="close" onclick="closeModal()">&times;</span>
+                                        <p>Salin link berikut:</p>
+                                        <input type="text" value="" id="shareLink" readonly>
+                                        <button onclick="copyToClipboard()">Salin</button>
+                                    </div>
+                                </div>
+                                <button class="share center" onclick="openModal(<?= $idsurvei ?>)"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></button>
                                 <?php } else { ?>
                                 <div class="votes">
                                     <a href="?voteup=<?php echo $row['id_survei'] ?>" class="up center <?php if($resultmem['naik'] == 1){ echo 'active'; } ?>" onclick="toggleVote(this)">
@@ -230,8 +240,16 @@
                                         <span>Dukung turun</span>
                                     </a>
                                 </div>
+                                <div id="myModal" class="modal">
+                                    <div class="modal-content">
+                                        <span class="close" onclick="closeModal()">&times;</span>
+                                        <p>Salin link berikut:</p>
+                                        <input type="text" value="" id="shareLink" readonly>
+                                        <button onclick="copyToClipboard()">Salin</button>
+                                    </div>
+                                </div>
+                                <button class="share center" onclick="openModal(<?= $idsurvei ?>)"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></button>
                                 <?php } ?>
-                                <button class="share center" onclick="toggleShare(this)"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></button>
                             </div>
                         </div>
                     </div>      
@@ -265,17 +283,33 @@
     </div>
 
 <script>
+    function openModal(idsurvei) {
+        var modal = document.getElementById("myModal");
+        var shareLinkInput = document.getElementById("shareLink");
+
+        shareLinkInput.value = "localhost/gws/survey.php?id=" + idsurvei;
+
+        modal.style.display = "block";
+    }
+
+    function copyToClipboard() {
+        var copyText = document.getElementById("shareLink");
+        copyText.select();
+        document.execCommand("copy");
+        alert("Link berhasil disalin!");
+    }
+
+    function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+
+
     function toggleVote(element) {
         element.classList.toggle('active');
 
         const otherVoteElement = element.classList.contains('up') ? document.querySelector('.down') : document.querySelector('.up');
         otherVoteElement.classList.remove('active');
-
-        return false;
-    }
-
-    function toggleShare(element) {
-        element.classList.toggle('active');
 
         return false;
     }

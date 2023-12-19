@@ -6,10 +6,10 @@
     $idsaya = $_SESSION['id_pengguna'];
     
     if($_GET['id']){
-        $id = $_GET['id'];
+        $idget = $_GET['id'];
     
         //survei
-        $sql = "SELECT * FROM survei WHERE id_survei = $id;";
+        $sql = "SELECT * FROM survei WHERE id_survei = $idget;";
         $query = mysqli_query($conn, $sql);
         $result = mysqli_fetch_assoc($query);
     
@@ -20,7 +20,7 @@
         $result_user = mysqli_fetch_assoc($query_user);
     
         //pertanyaan
-        $sql_q = "SELECT * FROM pertanyaan WHERE id_survei = $id;";
+        $sql_q = "SELECT * FROM pertanyaan WHERE id_survei = $idget;";
         $query_q = mysqli_query($conn, $sql_q);
     }
     
@@ -47,8 +47,8 @@
         }
         echo "<script>alert('Berhasil menambahkan jawaban!'); document.location = 'index.php';</script>";
     }else{
-        $id = $_GET['id'];
-        $sql_s = "SELECT id_pertanyaan FROM `pertanyaan` WHERE id_survei = $id;";
+        $idget = $_GET['id'];
+        $sql_s = "SELECT id_pertanyaan FROM `pertanyaan` WHERE id_survei = $idget;";
         $query_s = mysqli_query($conn, $sql_s);
         $id_pengguna_s = $_SESSION['id_pengguna'];
         while($row_s = mysqli_fetch_assoc($query_s)){
@@ -60,82 +60,127 @@
             }
         }
     }
+
+    $id=$_SESSION['id_pengguna'];
+   
     //voting
     if(isset($_GET['voteup'])){
         $vote=$_GET['voteup'];
-        $querymemilih="SELECT * FROM memilih where id_pengguna = '$idsaya' && id_survei='$vote'";
+        $querymemilih="SELECT * FROM memilih where id_pengguna='$id' && id_survei='$vote'";
         $resultmemilih=mysqli_query($conn,$querymemilih);
         $rowmemilih=mysqli_fetch_array($resultmemilih);
 
-        if(!$rowmemilih){
-            $queryselect="SELECT naik_survei FROM survei WHERE id_survei='$vote'";
+        if($rowmemilih==''){
+            $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
             $resultvote=mysqli_query($conn,$queryselect);
             $rowvote=mysqli_fetch_array($resultvote);
             $naik=$rowvote['naik_survei']+1;
-            $queryupdate="UPDATE survei SET naik_survei='$naik' where id_survei='$vote'";
+            $turun=$rowvote['turun_survei']-1;
+            $queryupdate="UPDATE survei SET naik_survei='$naik',turun_survei='$turun' where id_survei='$vote'";
             $resulupdate=mysqli_query($conn,$queryupdate);
-            $queryinsert="INSERT INTO memilih(id_pengguna, id_survei, naik, turun) VALUES($idsaya,$vote,'1', '0')";
+            $queryinsert="INSERT INTO memilih(id_pengguna, id_survei, naik, turun) VALUES($id,$vote,'1', '0')";
             $resultinsert=mysqli_query($conn,$queryinsert);
+            echo "<script> document.location = 'survey.php?id=$idget' </script>";
         }else{
-            if($rowmemilih['naik']==1){
-                $queryselect="SELECT naik_survei FROM survei WHERE id_survei='$vote'";
+            if($rowmemilih['turun']==1){
+                $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
+                $resultvote=mysqli_query($conn,$queryselect);
+                $rowvote=mysqli_fetch_array($resultvote);
+                $naik=$rowvote['naik_survei']+2;
+                $turun=$rowvote['turun_survei']-2;
+                $queryupdate="UPDATE survei SET naik_survei='$naik',turun_survei='$turun' where id_survei='$vote'";
+                $resulupdate=mysqli_query($conn,$queryupdate);    
+                $queryinsert="UPDATE memilih SET naik='1',turun='0' WHERE id_survei='$vote' && id_pengguna='$id'";
+                $resultinsert=mysqli_query($conn,$queryinsert);
+                echo "<script> document.location = 'survey.php?id=$idget' </script>";
+
+            }elseif($rowmemilih['naik']==1){
+                $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
                 $resultvote=mysqli_query($conn,$queryselect);
                 $rowvote=mysqli_fetch_array($resultvote);
                 $naik=$rowvote['naik_survei']-1;
-                $queryupdate="UPDATE survei SET naik_survei='$naik' where id_survei='$vote'";
+                $turun=$rowvote['turun_survei']+1;
+                $queryupdate="UPDATE survei SET naik_survei='$naik',turun_survei='$turun' where id_survei='$vote'";
                 $resulupdate=mysqli_query($conn,$queryupdate);    
-                $queryinsert="UPDATE memilih SET naik='0' WHERE id_survei='$vote' && id_pengguna = '$idsaya'";
+                $queryinsert="UPDATE memilih SET naik='0' WHERE id_survei='$vote' && id_pengguna='$id'";
                 $resultinsert=mysqli_query($conn,$queryinsert);
+                echo "<script> document.location = 'survey.php?id=$idget' </script>";
+
             }else{
                 $queryselect="SELECT naik_survei FROM survei WHERE id_survei='$vote'";
                 $resultvote=mysqli_query($conn,$queryselect);
                 $rowvote=mysqli_fetch_array($resultvote);
                 $naik=$rowvote['naik_survei']+1;
-                $queryupdate="UPDATE survei SET naik_survei='$naik' where id_survei='$vote'";
+                $turun=$rowvote['turun_survei']-1;
+                $queryupdate="UPDATE survei SET naik_survei='$naik',turun_survei='$turun' where id_survei='$vote'";
                 $resulupdate=mysqli_query($conn,$queryupdate);
-                $queryinsert="UPDATE memilih SET naik='1' WHERE id_survei='$vote' && id_pengguna = '$idsaya'";
+                $queryinsert="UPDATE memilih SET naik='1',turun='0' WHERE id_survei='$vote' && id_pengguna='$id'";
                 $resultinsert=mysqli_query($conn,$queryinsert);
+                echo "<script> document.location = 'survey.php?id=$idget' </script>";
+
             }
         }
     }
 
     if(isset($_GET['votedown'])){
         $vote=$_GET['votedown'];
-        $querymemilih="SELECT * FROM memilih where id_pengguna = '$idsaya' && id_survei='$vote'";
+        $querymemilih="SELECT * FROM memilih where id_pengguna='$id' && id_survei='$vote'";
         $resultmemilih=mysqli_query($conn,$querymemilih);
         $rowmemilih=mysqli_fetch_array($resultmemilih);
 
         if(!$rowmemilih){
-            $queryselect="SELECT turun_survei FROM survei WHERE id_survei='$vote'";
+            $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
             $resultvote=mysqli_query($conn,$queryselect);
             $rowvote=mysqli_fetch_array($resultvote);
             $naik=$rowvote['turun_survei']+1;
-            $queryupdate="UPDATE survei SET turun_survei='$naik' where id_survei='$vote'";
+            $turun=$rowvote['naik_survei']-1;
+            $queryupdate="UPDATE survei SET turun_survei='$naik', naik_survei='$turun' where id_survei='$vote'";
             $resulupdate=mysqli_query($conn,$queryupdate);
-            $queryinsert="INSERT INTO memilih(id_pengguna, id_survei, naik, turun) VALUES($idsaya,$vote,'0', '1')";
+            $queryinsert="INSERT INTO memilih(id_pengguna, id_survei, naik, turun) VALUES($id,$vote,'0', '1')";
             $resultinsert=mysqli_query($conn,$queryinsert);
+            echo "<script> document.location = 'survey.php?id=$idget' </script>";
+
         }else{
-            if($rowmemilih['turun']==1){
-                $queryselect="SELECT turun_survei FROM survei WHERE id_survei='$vote'";
+            if($rowmemilih['naik']==1){
+                $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
+                $resultvote=mysqli_query($conn,$queryselect);
+                $rowvote=mysqli_fetch_array($resultvote);
+                $naik=$rowvote['naik_survei']-2;
+                $turun=$rowvote['turun_survei']+2;
+                $queryupdate="UPDATE survei SET turun_survei='$turun', naik_survei='$naik' where id_survei='$vote'";
+                $resulupdate=mysqli_query($conn,$queryupdate);    
+                $queryinsert="UPDATE memilih SET naik='0', turun='1' WHERE id_survei='$vote' && id_pengguna='$id'";
+                $resultinsert=mysqli_query($conn,$queryinsert);
+                echo "<script> document.location = 'survey.php?id=$idget' </script>";
+
+            }elseif($rowmemilih['turun']==1){
+                $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
                 $resultvote=mysqli_query($conn,$queryselect);
                 $rowvote=mysqli_fetch_array($resultvote);
                 $naik=$rowvote['turun_survei']-1;
-                $queryupdate="UPDATE survei SET turun_survei='$naik' where id_survei='$vote'";
+                $turun=$rowvote['naik_survei']+1;
+                $queryupdate="UPDATE survei SET turun_survei='$naik',naik_survei='$turun' where id_survei='$vote'";
                 $resulupdate=mysqli_query($conn,$queryupdate);    
-                $queryinsert="UPDATE memilih SET turun='0' WHERE id_survei='$vote' && id_pengguna = '$idsaya'";
+                $queryinsert="UPDATE memilih SET turun='0'  WHERE id_survei='$vote' && id_pengguna='$id'";
                 $resultinsert=mysqli_query($conn,$queryinsert);
+                echo "<script> document.location = 'survey.php?id=$idget' </script>";
+
             }else{
-                $queryselect="SELECT turun_survei FROM survei WHERE id_survei='$vote'";
+                $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
                 $resultvote=mysqli_query($conn,$queryselect);
                 $rowvote=mysqli_fetch_array($resultvote);
                 $naik=$rowvote['turun_survei']+1;
-                $queryupdate="UPDATE survei SET turun_survei='$naik' where id_survei='$vote'";
+                $turun=$rowvote['naik_survei']-1;
+                $queryupdate="UPDATE survei SET turun_survei='$naik', naik_survei='$turun' where id_survei='$vote'";
                 $resulupdate=mysqli_query($conn,$queryupdate);
-                $queryinsert="UPDATE memilih SET turun='1' WHERE id_survei='$vote' && id_pengguna = '$idsaya'";
+                $queryinsert="UPDATE memilih SET turun='1', naik='0' WHERE id_survei='$vote' && id_pengguna='$id'";
                 $resultinsert=mysqli_query($conn,$queryinsert);
+                echo "<script> document.location = 'survey.php?id=$idget' </script>";
+
             }
         }
     }
+    //end of voting
     
 ?>
 
@@ -149,6 +194,14 @@
     <link rel="stylesheet" href="assets/css/survey.css">
 </head>
 <body>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Salin link berikut:</p>
+            <input type="text" value="<?= 'localhost/gws/survey.php?id='.$idget ?>" id="shareLink" readonly>
+            <button onclick="copyToClipboard()">Salin</button>
+        </div>
+    </div>
     <?php include("layouts/sidebar.php"); ?>
     <div class="container">
         <div class="profile">
@@ -221,22 +274,33 @@
             </a>
         </div>
         <?php } ?>
-            <button class="share center" onclick="toggleShare(this)"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></button>
+            <button class="share center" onclick="openModal()"><ion-icon name="share-social-outline" class="icon"></ion-icon><span>Bagikan</span></button>
         </div>
     </div>
 
 <script>
+    function openModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+    }
+
+    function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+
+    function copyToClipboard() {
+        var copyText = document.getElementById("shareLink");
+        copyText.select();
+        document.execCommand("copy");
+        alert("Link berhasil disalin!");
+    }
+
     function toggleVote(element) {
         element.classList.toggle('active');
 
         const otherVoteElement = element.classList.contains('up') ? document.querySelector('.down') : document.querySelector('.up');
         otherVoteElement.classList.remove('active');
-
-        return false;
-    }
-
-    function toggleShare(element) {
-        element.classList.toggle('active');
 
         return false;
     }

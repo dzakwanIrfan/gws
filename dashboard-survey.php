@@ -56,8 +56,13 @@
                     </a>
                 </td>
                 <td class="action">
-                    <a href="survey.php?id=<?= $row['id_survei'] ?>"><ion-icon class="icon" name="eye-outline" style="color:white; background-color: blue; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
-                    <a href="#" onclick="confirmDelete(<?= $row['id_survei'] ?>)"><ion-icon class="icon" name="trash-outline" style="color:white; background-color: red; padding: 4px; border-radius:4px"></ion-icon></a>
+                    <a href="survey.php?id=<?= $row['id_survei'] ?>"><ion-icon class="icon" name="eye-outline" style="color:white; background-color: #4E639A; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
+                    <?php if ($_SESSION['role_pengguna'] == 'pemilik') { ?>
+                        <a href="survey-laporan.php?id=<?= $row['id_survei'] ?>"><ion-icon class="icon" name="document-text-outline" style="color:black; background-color: #D6DA15; padding: 4px; border-radius:4px"></ion-icon></a><br><br>
+                    <?php } else { ?>
+                        <!-- tidak ada -->
+                    <?php } ?>
+                    <a href="#" onclick="confirmDelete(<?= $row['id_survei'] ?>)"><ion-icon class="icon" name="trash-outline" style="color:white; background-color: #9F2727; padding: 4px; border-radius:4px"></ion-icon></a>
                 </td>
             </tr>
             <?php } ?>
