@@ -19,7 +19,7 @@
                 echo "<script>alert('Gambar hanya dapat menerima file JPG, PNG, dan JPEG!');</script>";
             } else {
                 move_uploaded_file($tmp, $path);
-                $query="INSERT INTO survei(judul_survei, deskripsi_survei, gambar_survei, id_pengguna, waktu_survei) VALUES('$judul','$desk','$path','$id','$currentTime')";
+                $query="INSERT INTO survei(judul_survei, deskripsi_survei, gambar_survei, id_pengguna, waktu_survei, naik, turun) VALUES('$judul','$desk','$path','$id','$currentTime', '0', '0')";
                 $result = mysqli_query($conn, $query);
 
                 if ($result) {
@@ -34,7 +34,7 @@
 
             }
         }else{
-            $query="INSERT INTO survei(judul_survei, deskripsi_survei, id_pengguna, Waktu_survei, gambar_survei) VALUES('$judul','$desk','$id','$currentTime','assets/images/gambar-survey.png')";
+            $query="INSERT INTO survei(judul_survei, deskripsi_survei, id_pengguna, Waktu_survei, gambar_survei, naik, turun) VALUES('$judul','$desk','$id','$currentTime','assets/images/gambar-survey.png', '0', '0')";
             $result = mysqli_query($conn, $query);
             if ($result) {
                 $query="SELECT id_survei FROM survei WHERE judul_survei='$judul' && id_pengguna='$id'";
