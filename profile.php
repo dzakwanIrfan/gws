@@ -30,7 +30,14 @@
     <div class="container-profile">
             <h1>Profil</h1>
             <div class="bio">
-                <img src="<?= $row['foto_pengguna'] ?>" alt="Foto Pengguna">
+                <?php
+                if ($row['foto_pengguna'] == ''){
+                    echo "<img src='assets/images/profile-picture.png' alt='Foto Pengguna'>";
+                } else {
+                    $fotoku = $row['foto_pengguna'];
+                    echo "<img src='$fotoku' alt='Foto Pengguna'>";
+                }
+                ?>
                 <div class="nama"><?= $row['nama_pengguna'] ?></div>
                 <div class="username"><?= $row['namaUser_pengguna'] ?></div>
             </div>
@@ -50,7 +57,7 @@
                 <?php while($row_s = mysqli_fetch_assoc($query_s)){ ?>
                 <a href="survey-laporan.php?id=<?= $row_s['id_survei'] ?>" class="riwayat-group">
                     <div class="judul-riwayat"><?= $row_s['judul_survei'] ?></div>
-                    <div class="waktu-riwayat"><?= $row_s['waktu_survei'] ?></div>
+                    <div class="waktu-riwayat"><small><?= date('d F Y', strtotime($row_s['waktu_survei'])) ?></small></div>
                 </a>
                 <?php } ?>
             </div>

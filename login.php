@@ -29,7 +29,7 @@
                     $_SESSION['username']=$row['namaUser_pengguna'];
                     $_SESSION['id_pengguna']=$row['id_pengguna'];
                     $_SESSION['role_pengguna']=$row['role_pengguna'];
-                    header("Location: index.php");
+                    header("Location: dashboard-user.php");
                     exit;
                 } else if($row['role_pengguna'] == 'penyurvei'){
                     $_SESSION['username']=$row['namaUser_pengguna'];

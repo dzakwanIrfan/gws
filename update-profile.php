@@ -65,7 +65,14 @@
         <h1>Ubah Profil</h1>
         <div class="wrap">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-            <img id="previewImage" src="<?= $row['foto_pengguna'] ?>" alt="" style="cursor: pointer;">
+            <?php
+                if ($row['foto_pengguna'] == ''){
+                    echo "<img id='previewImage' src='assets/images/profile-picture.png' style='cursor: pointer;'>";
+                } else {
+                    $fotoku = $row['foto_pengguna'];
+                    echo "<img id='previewImage' src='$fotoku' style='cursor: pointer;'>";
+                }
+                ?>
             <input type="file" style="display: none" id="fileInput" onchange="previewFile()" name="img">
             <input type="hidden" value="<?= $row['id_pengguna'] ?>" name="id">
                 <div class="input-group">

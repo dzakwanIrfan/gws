@@ -15,34 +15,51 @@
         $resultmemilih=mysqli_query($conn,$querymemilih);
         $rowmemilih=mysqli_fetch_array($resultmemilih);
 
-        if(!$rowmemilih){
-            $queryselect="SELECT naik_survei FROM survei WHERE id_survei='$vote'";
+        if($rowmemilih==''){
+            $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
             $resultvote=mysqli_query($conn,$queryselect);
             $rowvote=mysqli_fetch_array($resultvote);
             $naik=$rowvote['naik_survei']+1;
-            $queryupdate="UPDATE survei SET naik_survei='$naik' where id_survei='$vote'";
+            $turun=$rowvote['turun_survei']-1;
+            $queryupdate="UPDATE survei SET naik_survei='$naik',turun_survei='$turun' where id_survei='$vote'";
             $resulupdate=mysqli_query($conn,$queryupdate);
             $queryinsert="INSERT INTO memilih(id_pengguna, id_survei, naik, turun) VALUES($id,$vote,'1', '0')";
             $resultinsert=mysqli_query($conn,$queryinsert);
+            header("Location:index.php");
         }else{
-            if($rowmemilih['naik']==1){
-                $queryselect="SELECT naik_survei FROM survei WHERE id_survei='$vote'";
+            if($rowmemilih['turun']==1){
+                $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
+                $resultvote=mysqli_query($conn,$queryselect);
+                $rowvote=mysqli_fetch_array($resultvote);
+                $naik=$rowvote['naik_survei']+2;
+                $turun=$rowvote['turun_survei']-2;
+                $queryupdate="UPDATE survei SET naik_survei='$naik',turun_survei='$turun' where id_survei='$vote'";
+                $resulupdate=mysqli_query($conn,$queryupdate);    
+                $queryinsert="UPDATE memilih SET naik='1',turun='0' WHERE id_survei='$vote' && id_pengguna='$id'";
+                $resultinsert=mysqli_query($conn,$queryinsert);
+                header("Location:index.php");
+            }elseif($rowmemilih['naik']==1){
+                $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
                 $resultvote=mysqli_query($conn,$queryselect);
                 $rowvote=mysqli_fetch_array($resultvote);
                 $naik=$rowvote['naik_survei']-1;
-                $queryupdate="UPDATE survei SET naik_survei='$naik' where id_survei='$vote'";
+                $turun=$rowvote['turun_survei']+1;
+                $queryupdate="UPDATE survei SET naik_survei='$naik',turun_survei='$turun' where id_survei='$vote'";
                 $resulupdate=mysqli_query($conn,$queryupdate);    
                 $queryinsert="UPDATE memilih SET naik='0' WHERE id_survei='$vote' && id_pengguna='$id'";
                 $resultinsert=mysqli_query($conn,$queryinsert);
+                header("Location:index.php");
             }else{
                 $queryselect="SELECT naik_survei FROM survei WHERE id_survei='$vote'";
                 $resultvote=mysqli_query($conn,$queryselect);
                 $rowvote=mysqli_fetch_array($resultvote);
                 $naik=$rowvote['naik_survei']+1;
-                $queryupdate="UPDATE survei SET naik_survei='$naik' where id_survei='$vote'";
+                $turun=$rowvote['turun_survei']-1;
+                $queryupdate="UPDATE survei SET naik_survei='$naik',turun_survei='$turun' where id_survei='$vote'";
                 $resulupdate=mysqli_query($conn,$queryupdate);
-                $queryinsert="UPDATE memilih SET naik='1' WHERE id_survei='$vote' && id_pengguna='$id'";
+                $queryinsert="UPDATE memilih SET naik='1',turun='0' WHERE id_survei='$vote' && id_pengguna='$id'";
                 $resultinsert=mysqli_query($conn,$queryinsert);
+                header("Location:index.php");
             }
         }
     }
@@ -54,33 +71,50 @@
         $rowmemilih=mysqli_fetch_array($resultmemilih);
 
         if(!$rowmemilih){
-            $queryselect="SELECT turun_survei FROM survei WHERE id_survei='$vote'";
+            $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
             $resultvote=mysqli_query($conn,$queryselect);
             $rowvote=mysqli_fetch_array($resultvote);
             $naik=$rowvote['turun_survei']+1;
-            $queryupdate="UPDATE survei SET turun_survei='$naik' where id_survei='$vote'";
+            $turun=$rowvote['naik_survei']-1;
+            $queryupdate="UPDATE survei SET turun_survei='$naik', naik_survei='$turun' where id_survei='$vote'";
             $resulupdate=mysqli_query($conn,$queryupdate);
             $queryinsert="INSERT INTO memilih(id_pengguna, id_survei, naik, turun) VALUES($id,$vote,'0', '1')";
             $resultinsert=mysqli_query($conn,$queryinsert);
+            header("Location:index.php");
         }else{
-            if($rowmemilih['turun']==1){
-                $queryselect="SELECT turun_survei FROM survei WHERE id_survei='$vote'";
+            if($rowmemilih['naik']==1){
+                $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
+                $resultvote=mysqli_query($conn,$queryselect);
+                $rowvote=mysqli_fetch_array($resultvote);
+                $naik=$rowvote['naik_survei']-2;
+                $turun=$rowvote['turun_survei']+2;
+                $queryupdate="UPDATE survei SET turun_survei='$turun', naik_survei='$naik' where id_survei='$vote'";
+                $resulupdate=mysqli_query($conn,$queryupdate);    
+                $queryinsert="UPDATE memilih SET naik='0', turun='1' WHERE id_survei='$vote' && id_pengguna='$id'";
+                $resultinsert=mysqli_query($conn,$queryinsert);
+                header("Location:index.php");
+            }elseif($rowmemilih['turun']==1){
+                $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
                 $resultvote=mysqli_query($conn,$queryselect);
                 $rowvote=mysqli_fetch_array($resultvote);
                 $naik=$rowvote['turun_survei']-1;
-                $queryupdate="UPDATE survei SET turun_survei='$naik' where id_survei='$vote'";
+                $turun=$rowvote['naik_survei']+1;
+                $queryupdate="UPDATE survei SET turun_survei='$naik',naik_survei='$turun' where id_survei='$vote'";
                 $resulupdate=mysqli_query($conn,$queryupdate);    
-                $queryinsert="UPDATE memilih SET turun='0' WHERE id_survei='$vote' && id_pengguna='$id'";
+                $queryinsert="UPDATE memilih SET turun='0'  WHERE id_survei='$vote' && id_pengguna='$id'";
                 $resultinsert=mysqli_query($conn,$queryinsert);
+                header("Location:index.php");
             }else{
-                $queryselect="SELECT turun_survei FROM survei WHERE id_survei='$vote'";
+                $queryselect="SELECT * FROM survei WHERE id_survei='$vote'";
                 $resultvote=mysqli_query($conn,$queryselect);
                 $rowvote=mysqli_fetch_array($resultvote);
                 $naik=$rowvote['turun_survei']+1;
-                $queryupdate="UPDATE survei SET turun_survei='$naik' where id_survei='$vote'";
+                $turun=$rowvote['naik_survei']-1;
+                $queryupdate="UPDATE survei SET turun_survei='$naik', naik_survei='$turun' where id_survei='$vote'";
                 $resulupdate=mysqli_query($conn,$queryupdate);
-                $queryinsert="UPDATE memilih SET turun='1' WHERE id_survei='$vote' && id_pengguna='$id'";
+                $queryinsert="UPDATE memilih SET turun='1', naik='0' WHERE id_survei='$vote' && id_pengguna='$id'";
                 $resultinsert=mysqli_query($conn,$queryinsert);
+                header("Location:index.php");
             }
         }
     }
@@ -95,7 +129,7 @@
     $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
     $halamanAktif = (isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
     $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
-    $query="SELECT survei.*, pengguna.* FROM survei JOIN pengguna ON survei.id_pengguna=pengguna.id_pengguna ORDER BY id_survei ASC LIMIT $awalData, $jumlahDataPerHalaman";
+    $query="SELECT survei.*, pengguna.* FROM survei JOIN pengguna ON survei.id_pengguna=pengguna.id_pengguna ORDER BY naik_survei DESC LIMIT $awalData, $jumlahDataPerHalaman";
     $result=mysqli_query($conn,$query);
 
     //search
@@ -157,7 +191,7 @@
                                                                 ?>" alt="profile"></a>
                                 <div class="profile-desk">
                                     <a href="profile.php?id=<?= $row['id_pengguna'] ?>"><div class="name"><?php echo $row['namaUser_pengguna']?></div></a>
-                                    <a href="profile.php?id=<?= $row['id_pengguna'] ?>"><div class="date"><small><?php echo $row['waktu_survei']?></small></div></a>
+                                    <a href="profile.php?id=<?= $row['id_pengguna'] ?>"><div class="date"><small><?php echo date('d F Y', strtotime($row['waktu_survei']))?></small></div></a>
                                 </div>
                             </div>
                             <a href="survey.php?id=<?php echo $row['id_survei']?>">

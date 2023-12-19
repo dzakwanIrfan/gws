@@ -152,10 +152,18 @@
     <?php include("layouts/sidebar.php"); ?>
     <div class="container">
         <div class="profile">
-            <a href="profile.php?id=<?= $result_user['id_pengguna'] ?>"><img src="<?= $result_user['foto_pengguna'] ?>" alt="profile"></a>
+            <?php
+                $idku = $result_user['id_pengguna'];
+                if ($result_user['foto_pengguna'] == ''){
+                    echo "<a href='profile.php?id=$idku'><img src='assets/images/profile-picture.png' alt='profile'></a>";
+                } else {
+                    $fotoku = $result_user['foto_pengguna'];
+                    echo "<a href='profile.php?id=$idku'><img src='$fotoku' alt='profile'></a>";
+                }
+            ?>
             <div class="profile-desk">
                 <a href="profile.php?id=<?= $result_user['id_pengguna'] ?>"><div class="name"><?= $result_user['nama_pengguna'] ?></div></a>
-                <a href="profile.php?id=<?= $result_user['id_pengguna'] ?>"><div class="date"><small><?= $result['waktu_survei'] ?></small></div></a>
+                <a href="profile.php?id=<?= $result_user['id_pengguna'] ?>"><div class="date"><small><?= date('d F Y', strtotime($result['waktu_survei'])) ?></small></div></a>
             </div>
         </div>
         <div class="title"><?= $result['judul_survei'] ?></div>
