@@ -43,7 +43,7 @@
     }
 
     .sidebar .logout {
-        background-color: #DF1616;
+        background-color: #9F2727;
         position: absolute;
         top: 95%; 
         left: 50%; 
@@ -80,7 +80,7 @@
     }
 
     .logout-tooltip {
-        background-color: red !important;
+        background-color: #9F2727 !important;
     }  
 
     ion-icon {
