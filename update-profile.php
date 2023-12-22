@@ -2,6 +2,12 @@
     include ("conection.php");
     session_start();
 
+   if($_SESSION['page']){
+    $page='dashboard-user.php';
+   }else{
+    $page='profile.php';
+   }
+
     if(isset($_GET['id'])){
         $id_p = $_GET['id'];
         $row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM pengguna WHERE id_pengguna=$id_p;"));
@@ -22,10 +28,12 @@
         $nama = $_POST['nama'];
         $email = $_POST['email'];
         $kelamin = $_POST['kelamin'];
+        $role = isset($_POST['role']) ? $_POST['role'] : 'penyurvei';
         $foto = $_FILES['img']['name'];
         $tmp = $_FILES['img']['tmp_name'];
 
         $tipe_foto = 0;
+
         if($foto != ""){
             $path = "image_pengguna/".$foto;
             $tipe_allowed = strtolower(pathinfo($foto, PATHINFO_EXTENSION));
@@ -34,7 +42,7 @@
                 $tipe_foto = 1;
             }else{
                 move_uploaded_file($tmp, $path);
-                $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin', foto_pengguna='$path' WHERE id_pengguna='$id';";
+                $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin', foto_pengguna='$path', role_pengguna='$role' WHERE id_pengguna='$id';";
                 $query = mysqli_query($conn, $update);
                 header("Location: update-profile.php?id=" . $id);
             }
@@ -43,10 +51,11 @@
         if($tipe_foto == 1){
             echo '<script>alert("Hanya menerima foto berformat png, jpg, dan jpeg!")</script>';
         }else{
-            $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin' WHERE id_pengguna='$id';";
+            $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin', role_pengguna='$role' WHERE id_pengguna='$id';";
             $query = mysqli_query($conn, $update);
             header("Location: update-profile.php?id=" . $id);
         }
+
     }
 ?>
 
@@ -102,9 +111,31 @@
                             <option value="perempuan" <?php if($row['jenisKelamin_pengguna'] == "perempuan"){ echo "selected"; } ?>>Perempuan</option>
                         </select>
                     </div>
-                <?php } ?>
+                <?php } 
+                    if($_SESSION['role_pengguna']=='pemilik'){
+                        ?>
+                            <div class="input-group">
+                                <label for="role">Role</label>
+                                <select name="role" id="role" style="color: rgba(0, 0, 0, 0.5);">
+                                <?php 
+                                    if($row['role_pengguna']=='pemilik'){
+                                        ?>
+                                            <option value="pemilik" selected>Pemilik</option>
+                                        <?php    
+                                    }else{
+                                        ?>
+                                            <option value="admin" <?php if($row['role_pengguna'] == "admin"){ echo "selected"; } ?>>Admin</option>
+                                            <option value="penyurvei" <?php if($row['role_pengguna'] == "penyurvei"){ echo "selected"; } ?>>Penyurvei</option>
+                                        <?php
+                                    }
+                                ?>
+                                </select>
+                            </div>    
+                        <?php
+                    }
+                ?>
                 <div class="submit-group">
-                    <a href="profile.php" class="batal">Batal</a>
+                    <a href="<?php echo $page?>" class="batal">Batal</a>
                     <input type="submit" value="Ubah" class="submit" name="ubah">
                 </div>
             </form>

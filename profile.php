@@ -1,6 +1,8 @@
 <?php
     include("conection.php");
     session_start();
+    $_SESSION['page']=false;
+
     if($_GET['id'] != ''){
         $id = $_GET['id'];
     }else{
