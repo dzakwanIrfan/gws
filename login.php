@@ -11,7 +11,6 @@
         $email=$_POST['email'];
         $password=$_POST['password'];
         $passwordError = false;
-        echo "ada";
 
         $queryselect="SELECT * FROM pengguna where email_pengguna='$email'";
         $result=mysqli_query($conn,$queryselect);
