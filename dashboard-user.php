@@ -32,7 +32,7 @@
         <table>
             <tr>
                 <th>Foto Pengguna</th>
-                <th>Nama Pengguna</th>
+                <th>Nama User Pengguna</th>
                 <th>Nama Pengguna</th>
                 <th>Email Pengguna</th>
                 <th>Jenis kelamin</th>
