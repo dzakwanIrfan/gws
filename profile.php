@@ -43,7 +43,13 @@
             </div>
             <div class="biodata">
                 <div class="isi-biodata"><?= $row['email_pengguna'] ?></div>
-                <div class="isi-biodata"><?= $row['jenisKelamin_pengguna'] ?></div>
+                <?php 
+                    if($row['jenisKelamin_pengguna']!=''){
+                        ?>
+                            <div class="isi-biodata"><?= $row['jenisKelamin_pengguna'] ?></div>
+                        <?php
+                    }
+                ?>
             </div>
             <?php if ($_SESSION['role_pengguna'] == 'admin' || $_SESSION['role_pengguna'] == 'pemilik' || $_SESSION['id_pengguna'] == $row['id_pengguna']) { ?>
                 <div class="ubah-bio"><a href="update-profile.php?id=<?= $row['id_pengguna'] ?>">Ubah</a></div>
