@@ -33,10 +33,10 @@
     <div class="container">
         <table>
             <tr>
-                <th>Foto Pengguna</th>
-                <th>Nama User Pengguna</th>
+                <th>Foto</th>
                 <th>Nama Pengguna</th>
-                <th>Email Pengguna</th>
+                <th>Nama</th>
+                <th>Email</th>
                 <th>Jenis kelamin</th>
                 <th>Aksi</th>
             </tr>
