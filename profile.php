@@ -1,13 +1,19 @@
 <?php
     include("conection.php");
     session_start();
-    $_SESSION['page']=false;
 
     if($_GET['id'] != ''){
         $id = $_GET['id'];
     }else{
         $id = $_SESSION['id_pengguna'];
     }
+
+    if($_SESSION['id_pengguna']!=$id){
+        $_SESSION['page']=true;
+    }else{
+        $_SESSION['page']=false;
+    }
+
     //profil pengguna
     $sql = "SELECT * FROM pengguna WHERE id_pengguna = $id;";
     $query = mysqli_query($conn, $sql);

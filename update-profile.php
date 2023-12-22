@@ -44,7 +44,7 @@
                 move_uploaded_file($tmp, $path);
                 $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin', foto_pengguna='$path', role_pengguna='$role' WHERE id_pengguna='$id';";
                 $query = mysqli_query($conn, $update);
-                header("Location: update-profile.php?id=" . $id);
+                header("Location:" .$page);
             }
         }
 
@@ -53,7 +53,7 @@
         }else{
             $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin', role_pengguna='$role' WHERE id_pengguna='$id';";
             $query = mysqli_query($conn, $update);
-            header("Location: update-profile.php?id=" . $id);
+            header("Location:" .$page);
         }
 
     }
