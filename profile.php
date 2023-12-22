@@ -55,10 +55,17 @@
             <div class="riwayat-judul">Riwayat Pembuatan Survey</div>
             <div class="riwayat">
                 <?php while($row_s = mysqli_fetch_assoc($query_s)){ ?>
-                <a href="survey-laporan.php?id=<?= $row_s['id_survei'] ?>" class="riwayat-group">
-                    <div class="judul-riwayat"><?= $row_s['judul_survei'] ?></div>
-                    <div class="waktu-riwayat"><small><?= date('d F Y', strtotime($row_s['waktu_survei'])) ?></small></div>
-                </a>
+                    <?php if ($_SESSION['id_pengguna'] == $_GET['id']) { ?>
+                        <a href="survey-laporan.php?id=<?= $row_s['id_survei'] ?>" class="riwayat-group">
+                            <div class="judul-riwayat"><?= $row_s['judul_survei'] ?></div>
+                            <div class="waktu-riwayat"><small><?= date('d F Y', strtotime($row_s['waktu_survei'])) ?></small></div>
+                        </a>
+                    <?php } else { ?>
+                        <a href="survey.php?id=<?= $row_s['id_survei'] ?>" class="riwayat-group">
+                            <div class="judul-riwayat"><?= $row_s['judul_survei'] ?></div>
+                            <div class="waktu-riwayat"><small><?= date('d F Y', strtotime($row_s['waktu_survei'])) ?></small></div>
+                        </a>
+                    <?php } ?>
                 <?php } ?>
             </div>
         </div>

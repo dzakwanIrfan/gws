@@ -32,10 +32,10 @@
     <div class="container">
         <table>
             <tr>
-                <th>Nama Survei</th>
+                <th>Judul Survei</th>
                 <th>Deskripsi Survei</th>
                 <th>Foto Survei</th>
-                <th>Pembuat</th>
+                <th>Pembuat Survei</th>
                 <th>Aksi</th>
             </tr>
             <?php while($row = mysqli_fetch_assoc($query)){ ?>
