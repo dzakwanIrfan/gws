@@ -88,7 +88,11 @@
                     <input type="text" id="email" placeholder="Masukan Email Anda.." value="<?= $row['email_pengguna'] ?>" name="email">
                 </div>
                 <?php if($row['jenisKelamin_pengguna']){ ?>
-                
+                        <select name="kelamin" id="jenis-kelamin" style="color: rgba(0, 0, 0, 0.5);" hidden>
+                            <option disabled selected >Masukan Kelamin Anda..</option>
+                            <option value="laki-laki" <?php if($row['jenisKelamin_pengguna'] == "laki-laki"){ echo "selected"; } ?>>Laki-laki</option>
+                            <option value="perempuan" <?php if($row['jenisKelamin_pengguna'] == "perempuan"){ echo "selected"; } ?>>Perempuan</option>
+                        </select>
                 <?php } else { ?>
                     <div class="input-group">
                         <label for="jenis-kelamin">Jenis-kelamin</label>
