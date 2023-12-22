@@ -87,8 +87,9 @@
     font-size: 25px; 
     }
 </style>
-
-
+<?php
+session_start();
+?>
 <div class="sidebar">
     <nav>
         <a href="index.php" class="tooltip">
@@ -99,7 +100,7 @@
             <ion-icon name="add-outline"></ion-icon>
             <span class="tooltiptext">Tambah Survei</span>
         </a>
-        <a href="profile.php" class="tooltip">
+        <a href="profile.php?id=<?php echo $_SESSION['id_pengguna'] ?>" class="tooltip">
             <ion-icon name="person-outline"></ion-icon>
             <span class="tooltiptext">Profil</span>
         </a> 
