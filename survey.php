@@ -33,9 +33,7 @@
     
                 $id_pengguna = $_SESSION['id_pengguna']; 
     
-                $waktu_jawaban = date("Y-m-d H:i:s");
-    
-                $sql_insert_jawaban = "INSERT INTO jawaban (jawaban, id_pengguna, id_pertanyaan, waktu_jawaban) VALUES ('$jawaban_id', '$id_pengguna', '$pertanyaan_id', '$waktu_jawaban')";
+                $sql_insert_jawaban = "INSERT INTO jawaban (jawaban, id_pengguna, id_pertanyaan) VALUES ('$jawaban_id', '$id_pengguna', '$pertanyaan_id')";
                 
                 $result_insert_jawaban = mysqli_query($conn, $sql_insert_jawaban);
     
