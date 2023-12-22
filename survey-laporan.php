@@ -76,7 +76,7 @@
                                                         <div class="opsi-jumlah"><span><?php echo $countopsi ?></span> suara</div>
                                                     </div>
                                                     <div class="persen-opsi">
-                                                        <div class="batang" style="width: <?= ($countopsi/$countpert) * 100?>%;" ></div>
+                                                        <div class="batang" style="width: <?= $countpert > 0 ? ($countopsi/$countpert) * 100 : 0 ?>%;" ></div>
                                                     </div>
                                                 </div>
                                             <?php
