@@ -4,6 +4,11 @@
     session_start();
 
     $idsaya = $_SESSION['id_pengguna'];
+    if($_SESSION['dashboard']){
+        $page='dashboard-survey.php';
+    }else{
+        $page='index.php';
+    }
     
     if($_GET['id']){
         $idget = $_GET['id'];
@@ -43,7 +48,7 @@
                 }
             }
         }
-        echo "<script>alert('Berhasil menambahkan jawaban!'); document.location = 'index.php';</script>";
+        echo "<script>alert('Berhasil menambahkan jawaban!'); document.location = '$page';</script>";
     }else{
         $idget = $_GET['id'];
         $sql_s = "SELECT id_pertanyaan FROM `pertanyaan` WHERE id_survei = $idget;";

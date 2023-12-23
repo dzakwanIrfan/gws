@@ -7,6 +7,7 @@
     }
     
     $id=$_SESSION['id_pengguna'];
+    $_SESSION['dashboard']=false;
    
     //voting
     if(isset($_GET['voteup'])){
