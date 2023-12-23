@@ -34,28 +34,51 @@
 
         $tipe_foto = 0;
 
-        if($foto != ""){
-            $path = "image_pengguna/".$foto;
-            $tipe_allowed = strtolower(pathinfo($foto, PATHINFO_EXTENSION));
+        if($kelamin==''){
+            if($foto != ""){
+                $path = "image_pengguna/".$foto;
+                $tipe_allowed = strtolower(pathinfo($foto, PATHINFO_EXTENSION));
 
-            if($tipe_allowed != 'jpg' && $tipe_allowed != 'png' && $tipe_allowed != 'jpeg'){
-                $tipe_foto = 1;
+                if($tipe_allowed != 'jpg' && $tipe_allowed != 'png' && $tipe_allowed != 'jpeg'){
+                    $tipe_foto = 1;
+                }else{
+                    move_uploaded_file($tmp, $path);
+                    $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', foto_pengguna='$path', role_pengguna='$role' WHERE id_pengguna='$id';";
+                    $query = mysqli_query($conn, $update);
+                    header("Location:" .$page);
+                }
+            }
+
+            if($tipe_foto == 1){
+                echo '<script>alert("Hanya menerima foto berformat png, jpg, dan jpeg!")</script>';
             }else{
-                move_uploaded_file($tmp, $path);
-                $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin', foto_pengguna='$path', role_pengguna='$role' WHERE id_pengguna='$id';";
+                $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', role_pengguna='$role' WHERE id_pengguna='$id';";
+                $query = mysqli_query($conn, $update);
+                header("Location:" .$page);
+            }
+        }else{
+            if($foto != ""){
+                $path = "image_pengguna/".$foto;
+                $tipe_allowed = strtolower(pathinfo($foto, PATHINFO_EXTENSION));
+
+                if($tipe_allowed != 'jpg' && $tipe_allowed != 'png' && $tipe_allowed != 'jpeg'){
+                    $tipe_foto = 1;
+                }else{
+                    move_uploaded_file($tmp, $path);
+                    $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin', foto_pengguna='$path', role_pengguna='$role' WHERE id_pengguna='$id';";
+                    $query = mysqli_query($conn, $update);
+                    header("Location:" .$page);
+                }
+            }
+
+            if($tipe_foto == 1){
+                echo '<script>alert("Hanya menerima foto berformat png, jpg, dan jpeg!")</script>';
+            }else{
+                $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin', role_pengguna='$role' WHERE id_pengguna='$id';";
                 $query = mysqli_query($conn, $update);
                 header("Location:" .$page);
             }
         }
-
-        if($tipe_foto == 1){
-            echo '<script>alert("Hanya menerima foto berformat png, jpg, dan jpeg!")</script>';
-        }else{
-            $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin', role_pengguna='$role' WHERE id_pengguna='$id';";
-            $query = mysqli_query($conn, $update);
-            header("Location:" .$page);
-        }
-
     }
 ?>
 
