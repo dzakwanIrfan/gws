@@ -59,7 +59,7 @@
             $sql_secure = "SELECT * FROM jawaban WHERE id_pertanyaan = '$id_pertanyaan_s' AND id_pengguna = '$id_pengguna_s';";
             $query_secure = mysqli_query($conn, $sql_secure);
             if(mysqli_fetch_assoc($query_secure)){
-                echo "<script>alert('Anda sudah menjawab survei ini!'); document.location = 'index.php';</script>";
+                echo "<script>alert('Anda sudah menjawab survei ini!'); document.location = '$page';</script>";
             }
         }
     }
