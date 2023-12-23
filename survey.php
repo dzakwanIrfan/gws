@@ -3,6 +3,10 @@
     include("conection.php");
     session_start();
 
+    if($_SESSION['id_pengguna']==''){
+        header("Location:login.php");
+    }
+
     $idsaya = $_SESSION['id_pengguna'];
     if($_SESSION['dashboard']){
         $page='dashboard-survey.php';
