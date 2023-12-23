@@ -1,3 +1,11 @@
+:root{
+    --latar-belakang: #FDE5D4;
+    --krem: #D6CC99;
+    --hijau: #445D48;
+    --hitam: #001524;
+    --biru: #4E639A;
+}
+
 *{
     margin: 0;
     padding: 0;
