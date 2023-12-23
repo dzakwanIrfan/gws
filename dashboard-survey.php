@@ -2,6 +2,8 @@
     include ("conection.php");
     session_start();
 
+    $_SESSION['dashboard']=true;
+
     if($_SESSION['role_pengguna'] != 'pemilik' && $_SESSION['role_pengguna'] != 'admin'){
         echo "<script>alert('Dilarang memasuki halaman ini!'); document.location = 'index.php';</script>";
     }

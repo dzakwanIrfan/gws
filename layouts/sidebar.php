@@ -89,6 +89,12 @@
 </style>
 <?php
 session_start();
+
+if($_SESSION['dashboard']){
+    $page='dashboard-survey.php';
+}else{
+    $page='dashboard-user.php';
+}
 ?>
 <div class="sidebar">
     <nav>
@@ -106,7 +112,7 @@ session_start();
         </a> 
 
         <?php if ($_SESSION['role_pengguna'] == 'admin' || $_SESSION['role_pengguna'] == 'pemilik') { ?>
-                <a href="dashboard-user.php" class="tooltip">
+                <a href="<?php echo $page ?>" class="tooltip">
                     <ion-icon name="file-tray-stacked-outline"></ion-icon>
                     <span class="tooltiptext">Kelola</span>
                 </a>

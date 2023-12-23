@@ -3,6 +3,7 @@
     session_start();
     
     $_SESSION['page']=true;
+    $_SESSION['dashboard']=false;
 
     if($_SESSION['role_pengguna'] != 'pemilik' && $_SESSION['role_pengguna'] != 'admin'){
         echo "<script>alert('Dilarang memasuki halaman ini!'); document.location = 'index.php';</script>";
