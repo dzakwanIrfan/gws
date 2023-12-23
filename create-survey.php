@@ -62,7 +62,7 @@
 <body>
     <?php include("layouts/sidebar.php"); ?>
     <div class="container">
-        <div class="judul">Kelola Survei</div>
+        <div class="judul">Pembuatan Survei</div>
         <form action="#" method="post" enctype="multipart/form-data">
             <div class="input-container">
                 <div class="input-group">
