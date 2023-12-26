@@ -154,33 +154,33 @@
         <p>
             Selamat datang di GWS! Mohon diperhatikan bahwa dengan mengakses dan menggunakan GWS, Anda dianggap menyetujui syarat dan ketentuan penggunaan berikut. Jika Anda tidak setuju dengan syarat dan ketentuan ini, harap untuk tidak menggunakan situs ini. <br>
             1. penggunaan Materi <br>
-            Semua materi, informasi, dan konten lainnya yang terdapat di GWS dimiliki atau dikendalikan oleh Dzakwan. Pengguna tidak diperbolehkan mengunduh, menggandakan, memodifikasi, atau mendistribusikan materi tersebut tanpa izin tertulis dari Dzakwan. <br>
+            Semua materi, informasi, dan konten lainnya yang terdapat di GWS dimiliki atau dikendalikan oleh Pemilik. Pengguna tidak diperbolehkan mengunduh, menggandakan, memodifikasi, atau mendistribusikan materi tersebut tanpa izin tertulis dari Pemilik. <br>
             <br>
             2. Akun Pengguna <br>
             Jika Anda membuat akun di GWS, Anda bertanggung jawab untuk menjaga keamanan informasi akun Anda dan memberikan informasi yang benar dan akurat. Anda juga bertanggung jawab atas semua kegiatan yang terjadi di bawah akun Anda. <br>
             <br>
             3. Batasan Tangung Jawab <br>
-            Dzakwan tidak bertanggung jawab atas kerugian atau kerusakan yang timbul akibat penggunaan atau akses terhadap GWS. Kami tidak memberikan jaminan atas keakuratan atau kelengkapan materi di situs ini. <br>
+            Pemilik tidak bertanggung jawab atas kerugian atau kerusakan yang timbul akibat penggunaan atau akses terhadap GWS. Kami tidak memberikan jaminan atas keakuratan atau kelengkapan materi di situs ini. <br>
             <br>
             4. Hak Cipta <br>
-            Semua hak cipta dan hak kekayaan intelektual lainnya terkait dengan GWS dan kontennya adalah milik Dzakwan. Pengguna tidak diperbolehkan menggunakan, mengubah, atau mendistribusikan konten tanpa izin tertulis. <br>
+            Semua hak cipta dan hak kekayaan intelektual lainnya terkait dengan GWS dan kontennya adalah milik Pemilik. Pengguna tidak diperbolehkan menggunakan, mengubah, atau mendistribusikan konten tanpa izin tertulis. <br>
             <br>
             5. Perubahan pada Syarat dan Ketentuan <br>
-            Dzakwan berhak untuk mengubah syarat dan ketentuan ini setiap saat tanpa pemberitahuan sebelumnya. Perubahan akan berlaku sejak saat diumumkan di situs ini. <br>
+            Pemilik berhak untuk mengubah syarat dan ketentuan ini setiap saat tanpa pemberitahuan sebelumnya. Perubahan akan berlaku sejak saat diumumkan di situs ini. <br>
             <br>
             6. Hukum yang Berlaku <br>
             Syarat dan ketentuan ini diatur oleh hukum yang berlaku di Purbalingga dan setiap sengketa yang timbul akan diselesaikan di pengadilan yang berwenang di Purbalingga. <br>
             <br>
             7. Konten yang Diunggah Pengguna <br>
-            a. Pengguna dapat mengunggah survei dan jawaban survei ke GWS, dan dengan melakukan itu, mereka setuju bahwa mereka bertanggung jawab sepenuhnya atas survei dan jawaban atas survei  yang diunggah. Dzakwan tidak bertanggung jawab atas keakuratan, legalitas, atau kepatutan konten yang diunggah oleh pengguna. <br>
-            b. Dzakwan berhak, tanpa pemberitahuan sebelumnya, untuk menghapus atau mengubah konten yang dianggap mengandung unsur rasisme, seksual, kepentingan politik, ujaran kebencian, kegiatan ilegal, kriminalitas atau melanggar hukum yang berlaku. <br>
+            a. Pengguna dapat mengunggah survei dan jawaban survei ke GWS, dan dengan melakukan itu, mereka setuju bahwa mereka bertanggung jawab sepenuhnya atas survei dan jawaban atas survei  yang diunggah. Pemilik tidak bertanggung jawab atas keakuratan, legalitas, atau kepatutan konten yang diunggah oleh pengguna. <br>
+            b. Pemilik berhak, tanpa pemberitahuan sebelumnya, untuk menghapus atau mengubah konten yang dianggap mengandung unsur rasisme, seksual, kepentingan politik, ujaran kebencian, kegiatan ilegal, kriminalitas atau melanggar hukum yang berlaku. <br>
             <br>
             8. Lisensi Penggunaan Konten <br>
-            a. Dengan mengunggah survei dan jawaban survei ke GWS, pengguna memberikan Dzakwan lisensi non-eksklusif, bebas royalti, dapat dipindahtangankan, dan dapat dilisensikan untuk menggunakan, mereproduksi, mengadaptasi, mendistribusikan, dan menampilkan konten tersebut di bawah kerangka hukum yang berlaku. <br>
+            a. Dengan mengunggah survei dan jawaban survei ke GWS, pengguna memberikan Pemilik lisensi non-eksklusif, bebas royalti, dapat dipindahtangankan, dan dapat dilisensikan untuk menggunakan, mereproduksi, mengadaptasi, mendistribusikan, dan menampilkan konten tersebut di bawah kerangka hukum yang berlaku. <br>
             b. Pengguna memahami dan setuju bahwa survei dan jawaban survei yang diunggah dapat diakses oleh pengguna lain dan dapat digunakan oleh GWS untuk tujuan promosi dan pemasaran. <br>
             <br>
             9. Tanggung Jawab Hukum Pengguna <br>
-            Pengguna bertanggung jawab penuh atas konten yang diunggah dan setuju untuk melepaskan Dzakwan dari segala tuntutan atau kerugian yang timbul akibat konten yang diunggah. <br>
+            Pengguna bertanggung jawab penuh atas konten yang diunggah dan setuju untuk melepaskan Pemilik dari segala tuntutan atau kerugian yang timbul akibat konten yang diunggah. <br>
             <br>
             Terima kasih atas kunjungan Anda di GWS!
         </p>
