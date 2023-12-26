@@ -2,6 +2,10 @@
     include ("conection.php");
     session_start();
     
+    if(!$_SESSION['username']){
+        header('Location:login.php');
+    }
+
     $_SESSION['page']=true;
     $_SESSION['dashboard']=false;
 

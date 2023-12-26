@@ -2,6 +2,10 @@
     include 'conection.php';
     session_start();
 
+    if(!$_SESSION['username']){
+        header('Location:login.php');
+    }
+
     $id=$_GET['id'];
     
     $querycek="SELECT * FROM pertanyaan WHERE id_survei='$id'";

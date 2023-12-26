@@ -2,6 +2,10 @@
     include("conection.php");
     session_start();
 
+    if(!$_SESSION['username']){
+        header('Location:login.php');
+    }
+
     if($_GET['id'] != ''){
         $id = $_GET['id'];
     }else{
@@ -9,9 +13,9 @@
     }
 
     if($_SESSION['id_pengguna']!=$id){
-        $_SESSION['page']=true;
-    }else{
         $_SESSION['page']=false;
+    }else{
+        $_SESSION['page']=true;
     }
 
     //profil pengguna

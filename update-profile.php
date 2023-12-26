@@ -2,11 +2,6 @@
     include ("conection.php");
     session_start();
 
-   if($_SESSION['page']){
-    $page='dashboard-user.php';
-   }else{
-    $page='profile.php';
-   }
 
     if(isset($_GET['id'])){
         $id_p = $_GET['id'];
@@ -19,6 +14,16 @@
         }
     } else {
         echo "<script>document.location = 'index.php';</script>";
+    }
+
+    if($_SESSION['page']==true){
+        if($_SESSION['role_pengguna']=='pemilik' || $_SESSION['role_pengguna']=='admin'){
+            $page='dashboard-user.php';
+        }else{
+            $page='profile.php?id='.$id_p;
+        }
+    }else{
+        $page='profile.php?id='.$id_p;
     }
 
     //edit
@@ -45,7 +50,11 @@
                     move_uploaded_file($tmp, $path);
                     $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', foto_pengguna='$path', role_pengguna='$role' WHERE id_pengguna='$id';";
                     $query = mysqli_query($conn, $update);
-                    header("Location:" .$page);
+                    if($_SESSION['role_pengguna']=='pemilik' || $_SESSION['role_pengguna']=='admin'){
+                        header("Location:" .$page);        
+                    }else{
+                        header("Location:profile.php?id=" .$id);
+                    }
                 }
             }
 
@@ -54,7 +63,11 @@
             }else{
                 $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', role_pengguna='$role' WHERE id_pengguna='$id';";
                 $query = mysqli_query($conn, $update);
-                header("Location:" .$page);
+                if($_SESSION['role_pengguna']=='pemilik' || $_SESSION['role_pengguna']=='admin'){
+                    header("Location:" .$page);        
+                }else{
+                    header("Location:profile.php?id=" .$id);
+                }
             }
         }else{
             if($foto != ""){
@@ -67,7 +80,11 @@
                     move_uploaded_file($tmp, $path);
                     $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin', foto_pengguna='$path', role_pengguna='$role' WHERE id_pengguna='$id';";
                     $query = mysqli_query($conn, $update);
-                    header("Location:" .$page);
+                    if($_SESSION['role_pengguna']=='pemilik' || $_SESSION['role_pengguna']=='admin'){
+                        header("Location:" .$page);        
+                    }else{
+                        header("Location:profile.php?id=" .$id);
+                    }
                 }
             }
 
@@ -76,7 +93,11 @@
             }else{
                 $update = "UPDATE pengguna SET namaUser_pengguna='$username', nama_pengguna='$nama', email_pengguna='$email', jenisKelamin_pengguna='$kelamin', role_pengguna='$role' WHERE id_pengguna='$id';";
                 $query = mysqli_query($conn, $update);
-                header("Location:" .$page);
+                if($_SESSION['role_pengguna']=='pemilik' || $_SESSION['role_pengguna']=='admin'){
+                    header("Location:" .$page);        
+                }else{
+                    header("Location:profile.php?id=" .$id);
+                }
             }
         }
     }
@@ -158,7 +179,13 @@
                     }
                 ?>
                 <div class="submit-group">
-                    <a href="<?php echo $page?>" class="batal">Batal</a>
+                    <a href="<?php 
+                        if($_SESSION['role_pengguna']=='pemilik' || $_SESSION['role_pengguna']=='admin'){
+                            echo $page;
+                        }else{
+                            echo 'profile.php?id=' .$id_p;
+                        }
+                    ?>" class="batal">Batal</a>
                     <input type="submit" value="Ubah" class="submit" name="ubah">
                 </div>
             </form>

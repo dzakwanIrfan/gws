@@ -2,6 +2,10 @@
     include ("conection.php");
     session_start();
 
+    if(!$_SESSION['username']){
+        header('Location:login.php');
+    }
+
     $_SESSION['dashboard']=true;
 
     if($_SESSION['role_pengguna'] != 'pemilik' && $_SESSION['role_pengguna'] != 'admin'){

@@ -3,6 +3,10 @@
     include 'conection.php';
     session_start();
 
+    if(!$_SESSION['username']){
+        header('Location:login.php');
+    }
+
     if(isset($_POST['submit'])){
         $judul=$_POST['judul'];
         $desk=$_POST['desk'];
