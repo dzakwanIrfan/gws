@@ -65,12 +65,15 @@
       }
 
       .popup {
-        background-color: #fff;
+        position: relative;
+        max-height: 80%;
+        background-color: #d6cc99;
         padding: 20px;
-        max-width: 600px;
+        max-width: 40%;
         margin: 20px auto;
-        border-radius: 8px;
+        border-radius: 1rem;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        overflow-y: scroll;
       }
 
       .close-btn {
@@ -124,10 +127,13 @@
                     <label for="passwordku">Konfirmasi Kata Sandi</label>
                     <input type="password" name="confirm" id="konfirmasiku" placeholder="Masukan password Anda.." required>
                 </div>
-                <label for="termsCheckbox">
-                    <a href="#" onclick="showPopup()">agree to the terms and conditions</a>
-                    <input type="checkbox" id="termsCheckbox" onchange="enableSubmit()" />
+                <label for="termsCheckbox" style="display: flex; align-items: center; font-size: 16px; justify-content: center;">
+                    <a href="#" onclick="showPopup()" style="color: #445D48; margin-right: 10px; font-weight: 600;">agree to the terms and conditions</a>
+                    <input type="checkbox" id="termsCheckbox" onchange="enableSubmit()" style="width: 20px; height: 20px;" />
                 </label>
+
+                </label>
+
                 <input type="submit" name="register" value="Daftar" id="submitButton" class="submit" disabled>
             </form>
             <p class="atau">- ATAU -</p>
@@ -141,8 +147,10 @@
 
     <div id="overlay" class="overlay">
       <div class="popup">
-        <span class="close-btn" onclick="hidePopup()">&times;</span>
-        <h2>Terms and Conditions</h2>
+        <div class="sticky">
+            <span class="close-btn" onclick="hidePopup()">&times;</span>
+            <h2 style="color: #445D48;">Terms and Conditions</h2>
+        </div>
         <p>
             Selamat datang di GWS! Mohon diperhatikan bahwa dengan mengakses dan menggunakan GWS, Anda dianggap menyetujui syarat dan ketentuan penggunaan berikut. Jika Anda tidak setuju dengan syarat dan ketentuan ini, harap untuk tidak menggunakan situs ini. <br>
             1. penggunaan Materi <br>
