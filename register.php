@@ -128,7 +128,7 @@
                     <input type="password" name="confirm" id="konfirmasiku" placeholder="Masukan password Anda.." required>
                 </div>
                 <label for="termsCheckbox" style="display: flex; align-items: center; font-size: 16px; justify-content: center;">
-                    <a href="#" onclick="showPopup()" style="color: #445D48; margin-right: 10px; font-weight: 600;">agree to the terms and conditions</a>
+                    <a href="#" onclick="showPopup()" style="color: #445D48; margin-right: 10px; font-weight: 600;">Menyetujui dengan syarat dan ketentuan</a>
                     <input type="checkbox" id="termsCheckbox" onchange="enableSubmit()" style="width: 20px; height: 20px;" />
                 </label>
 
@@ -149,10 +149,11 @@
       <div class="popup">
         <div class="sticky">
             <span class="close-btn" onclick="hidePopup()">&times;</span>
-            <h2 style="color: #445D48;">Terms and Conditions</h2>
+            <h2 style="color: #445D48;">Syarat dan Ketentuan</h2>
         </div>
         <p>
             Selamat datang di GWS! Mohon diperhatikan bahwa dengan mengakses dan menggunakan GWS, Anda dianggap menyetujui syarat dan ketentuan penggunaan berikut. Jika Anda tidak setuju dengan syarat dan ketentuan ini, harap untuk tidak menggunakan situs ini. <br>
+            <br>
             1. penggunaan Materi <br>
             Semua materi, informasi, dan konten lainnya yang terdapat di GWS dimiliki atau dikendalikan oleh Pemilik. Pengguna tidak diperbolehkan mengunduh, menggandakan, memodifikasi, atau mendistribusikan materi tersebut tanpa izin tertulis dari Pemilik. <br>
             <br>
